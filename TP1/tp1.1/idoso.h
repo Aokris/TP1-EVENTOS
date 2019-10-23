@@ -8,6 +8,8 @@
 using namespace std;
 
 class Idoso : protected Adulto{
+    private:
+        int _id_dependente;
     public:
         Idoso(int id, string categoria, string nome, int idade,float saldo);
 };

@@ -7,12 +7,10 @@ Trabalho Pratico-Parte 1
 #include "funcoes.h"
 
 int main (){
-
-    /*------USUARIOS-------*/
-    int j=0,aux=0,k=0,i=0;//variaveis auxiliares
+    int j=0,aux=0,k=0,i=0,tam = 0;//variaveis auxiliares
 
     int *depend = new int;//vetor de id dependentes
-    depend[0] = -1; // usado para caso extremo de nenhum dependente
+    //depend[0] = -1; // usado para caso extremo de nenhum dependente
     int *idad = new int;//vetor de idades
     int qcria = 0,qadult = 0,qidos = 0;//quantidade de usuarios
 
@@ -37,45 +35,40 @@ int main (){
         le_arquivo(file, linha);//le o arquivo e coloca na variavel linha
     }
 
-    for(lin = linha.begin(); lin < linha.end()+1; lin++){
+    for(lin = linha.begin(); lin < linha.end()-1; lin++){
+        tam++;
+    }
 
-//Coleta de dados para criação de objetos
-        if (aux == 0 && linha[i] != "\0"){
-            id = stoi(linha[i]);
-            aux ++;
+ 
+    while(i != tam){
+         
+        id = stoi(linha[i]);
+        i++;
+        
 
-        }else if (aux == 1){
-            categoria = linha[i];
-            aux++;
+        categoria = linha[i];
+        i++;
 
-        }else if (aux == 2){
-            nome = linha[i];
-            aux++;
+        nome = linha[i];
+        i++;
 
-        }else if(aux == 3){
-            idad[j] = stoi(linha[i]);
-            j++;
-            aux++;
+        idad[j] = stoi(linha[i]);
+        i++;
 
-        }else if(aux == 4){
-            saldo = stod(linha[i]);
-            if(categoria == "criança"){
-                aux++;
-            }else{
-                aux = -1;
-            }
+        saldo = stod(linha[i]);
+        i++;
 
-        }else if (aux == 5){
+        if(categoria == "crianca"){
             depend[k] = stoi(linha[i]);
-            aux = -1;
-            k++;
+            i++;
+        }
+        
 
-        }else{//Criando objetos...
-
-            if(categoria == "criança"){
+        if(categoria == "crianca"){
                 qcria++;
                 Crianca c (id,categoria,nome,idad[j],saldo,depend[k]);
                 crianca.push_back(c);
+                k++;
 
             }else if(categoria == "adulto"){
                 qadult++;
@@ -84,15 +77,12 @@ int main (){
 
             }else if(categoria == "idoso"){
                 qidos++;
-                Idoso i (id,categoria,nome,idad[j],saldo);
-                idoso.push_back(i);
+                Idoso ido (id,categoria,nome,idad[j],saldo);
+                idoso.push_back(ido);
 
-            }
-            aux = 0;
-            i--;
-        }
-        i++;
-    }
+            }        
+   }
+
 //---------Saida do Programa----------//
     cout << "\nNúmero de usuários:" << endl;
     cout << "Crianças: " << qcria << endl;
@@ -109,120 +99,7 @@ int main (){
         NumeroDependentes(depend,k);
     }
 
-
-
-
-/*-------EVENTOS-----*/
-/*------Dados para Criação de objetos*/
-    j=0,aux=0,k=0,i=0;//variaveis auxiliares
-
-    /*int *depend = new int;//vetor de id dependentes
-    depend[0] = -1; // usado para caso extremo de nenhum dependente
-    int *idad = new int;//vetor de idades*/
-    int qboate = 0,qshow = 0,qcinema = 0, qteatro = 0;//quantidade de eventos
-
-    int id2, dono, numtipo, quota_idoso = 0; //id do evento, id do dono, numero de tipos de ingressos, quota idoso; 
-    int *valor_i = new int;//valor dos ingressos,
-    int *capacidade = new int; //quantidade de ingresso
-    string subcategoria,categoriaevent,nomeevent;//subcategoria, categoria:adulto,infantil, nome do evento
-
-    vector<string> linha2; //iniciar o vetor da linha
-    vector<TeatroFantoche> teatro; //iniciar o vetor de teatrofantoche
-    vector<Cinema> cinema; //iniciar o vetor de cinema 
-    vector<Boate> boate; //iniciar o vetor de boate
-    vector<Show> show; //iniciar vetor de show
-    vector<string>::iterator lin2;//iterator para linha
-    fstream file2;//Cria a variavel arquivo
-    
-    file2.open("Entrada2.csv");//abre o arquivo
-
-    if(!file2.is_open())//verifica se o arquivo foi aberto
-    {
-        cout << "Erro! Não foi possível abrir esse arquvio"<<'\n';
-    }else{
-        le_arquivo(file2, linha2);//le o arquivo e coloca na variavel linha
-    }
-
-    for(lin2 = linha.begin(); lin2 < linha.end()+1; lin2++){
-
-//Coleta de dados para criação de objetos
-        if (aux == 0 && linha2[i] != "\0"){
-            id2 = stoi(linha2[i]);
-            aux ++;
-
-        }else if (aux == 1){
-            if(linha2[i] == "cinema"){
-                subcategoria = linha2[i];
-                aux = 3;
-                k = 0;
-
-            }else{
-            categoriaevent = linha2[i];
-            if(categoriaevent == "adulto"){
-                k = 1;                
-            }else k = 2;
-
-            aux++;}
-
-        }else if (aux == 2){
-            subcategoria = linha2[i];
-            aux++;
-
-        }else if(aux == 3){
-            nomeevent = linha2[i];
-            aux++;
-
-        }else if(aux == 4){
-            dono = stoi(linha2[i]);
-            aux++;            
-            }
-
-        }else if (aux == 5){
-            numtipo = stoi(linha2[i]);
-            for(int h = 0; h < numtipo; h++){
-                capacidade[h] = stoi(linha2[i]);
-                valor_i[h] = stoi(linha2[i]);
-            }
-
-        }
-        
-        switch (k)
-        {
-        case 0:
-            int *horario = new int;
-            break;
-        
-        default:
-            break;
-        }
-
-        else{//Criando objetos...
-
-            if(subcategoria == "cinema"){
-                qcinema++;
-                Cinema cine (id2,nome,dono,capacidade,precos,depend[k]);
-                crianca.push_back(c);
-
-            }else if(categoria == "adulto"){
-                qadult++;
-                Adulto a (id,categoria,nome,idad[j],saldo);
-                adulto.push_back(a);
-
-            }else if(categoria == "idoso"){
-                qidos++;
-                Idoso i (id,categoria,nome,idad[j],saldo);
-                idoso.push_back(i);
-
-            }
-            aux = 0;
-            i--;
-        }
-        i++;
-    }
-
-    
-    
     file.close();
-    file2.close();
+
     return 0;
 }

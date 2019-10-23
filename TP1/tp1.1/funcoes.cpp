@@ -8,6 +8,9 @@ void le_arquivo (fstream &file,vector<string> &linha){
     while(!file.eof())
     {
         getline(file, buffer,';'); //ler cada coluna
+        if(buffer == ""){
+			continue;
+		}else
         linha.push_back(buffer); //adicionar ao vetor da linha    
     }
 }

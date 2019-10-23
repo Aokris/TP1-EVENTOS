@@ -1,13 +1,6 @@
 #include "adulto.h"
 #include "crianca.h"
 #include "idoso.h"
-#include "evento.h"
-#include "eventoadulto.h"
-#include "eventoinfantil.h"
-#include "teatrodefantoches.h"
-#include "cinema.h"
-#include "boate.h"
-#include "show.h"
 #include <iostream>
 #include <string>
 #include <vector>
