@@ -10,7 +10,7 @@ int main (){
     int j=0,aux=0,k=0,i=0,tam = 0;//variaveis auxiliares
 
     int *depend = new int;//vetor de id dependentes
-    //depend[0] = -1; // usado para caso extremo de nenhum dependente
+    depend[0] = -1; // usado para caso extremo de nenhum dependente
     int *idad = new int;//vetor de idades
     int qcria = 0,qadult = 0,qidos = 0;//quantidade de usuarios
 
@@ -37,32 +37,31 @@ int main (){
 
     for(lin = linha.begin(); lin < linha.end()-1; lin++){
         tam++;
-    }
-
+    }//pega quantas palavras tem no arquivo
  
-    while(i != tam){
+        while(i != tam){
          
-        id = stoi(linha[i]);
+        id = stoi(linha[i]);//armazena a id de cada usuario
         i++;
         
 
-        categoria = linha[i];
+        categoria = linha[i];//criança, adulto etc
         i++;
 
-        nome = linha[i];
+        nome = linha[i];//nome do usuario
         i++;
 
-        idad[j] = stoi(linha[i]);
+        idad[j] = stoi(linha[i]);//idade do usuario
+        j++;    
         i++;
 
-        saldo = stod(linha[i]);
+        saldo = stod(linha[i]);//saldo bancario
         i++;
 
-        if(categoria == "crianca"){
-            depend[k] = stoi(linha[i]);
+        if(categoria == "crianca"){//se criança pega o dependente
+            depend[k] = stoi(linha[i]);//achar outra forma de somar o numero maximo de dependetes pois queremos imprimir o numero maximo por adulto
             i++;
         }
-        
 
         if(categoria == "crianca"){
                 qcria++;

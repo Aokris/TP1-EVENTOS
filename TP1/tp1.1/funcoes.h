@@ -7,6 +7,7 @@
 #include <sstream>
 #include <fstream>
 #include<iterator>
+#include <set>
 
 void le_arquivo (fstream &file,vector<string> &linha);
 

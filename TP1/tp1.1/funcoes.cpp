@@ -18,20 +18,25 @@ void le_arquivo (fstream &file,vector<string> &linha){
 void IdadeDosUsuarios(int *idad, int max){
     int aux=0,soma=0;
     float resul;
-    for (int i = 0; i < max-1; i++) { 
+
+    for (int i = 0; i < max; i++) { 
+        cout<<idad[i]<<endl;
         soma += idad[i];
+    }
 
-        for (int j = 0; j < i-1; j++){ 
+    for (int i = 0; i < max; i++) { 
+        for (int j = 0; j < max; j++){ 
 
-            if (idad[j] > idad[j+1]){ 
+            if (idad[i] < idad[j]){ 
 
-                aux = idad[j];
-                idad[j] = idad[j+1];
-                idad[j+1] = aux;
+                aux = idad[i];
+                idad[i] = idad[j];
+                idad[j] = aux;
             } 
         } 
    }
-   resul = soma/max-1;
+   
+   resul = (float)soma/max;
 
    cout << "\nIdade dos usuários:" << endl;
    cout << "Minima: "<< idad[0] << endl;
@@ -42,23 +47,23 @@ void IdadeDosUsuarios(int *idad, int max){
 void NumeroDependentes (int *depend, int max){
     int aux=0,soma=0;
     float resul;
-    for (int i = 0; i < max-1; i++) { 
+    for (int i = 0; i < max; i++) { 
         soma += i;
-        cout << endl << "valor da soma dos numeros de dependentes :" << soma <<endl;
 
-        for (int j = 0; j < i-1; j++){ 
+        for (int j = 0; j < i; j++){ 
             
-            if (depend[j] > depend[j+1]){ 
+            if (depend[i] < depend[j]){ 
 
-                aux = depend[j];
-                depend[j] = depend[j+1];
-                depend[j+1] = aux;
+                aux = depend[i];
+                depend[i] = depend[j];
+                depend[j] = aux;
             } 
         } 
     }
-    resul = soma/max-1;
+    resul = (float)soma/max;
+
     cout << "\nNúmero de dependentes:" << endl;
-    cout << "Minima: "<< 1 << endl;
-    cout << "Máxima: "<< depend[max-1] << endl;
+    cout << "Minima: "<< depend[0] << endl;
+    cout << "Máxima: "<< depend[max-1] + 1 << endl;//numero de dependetes deve ser o maximo por adulto
     cout << "Média: "<< resul << endl;
 }
