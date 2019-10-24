@@ -45,18 +45,28 @@ void IdadeDosUsuarios(int *idad, int max){
 }
 
 void NumeroDependentes (int *depend, int max){
+    set<int> numdep;
+    set<int> iterator it; //set pra armazenar uma vez o id do responsavel
+
     int aux=0,soma=0;
     float resul;
-    for (int i = 0; i < max; i++) { 
-        soma += i;
+
+    for (int i = 0; i < max; i++){ 
+        numdep.insert(depend[i]);
+    }
+
+    max = numdep.size();
+
+    for (int i = 0; i < max; i++){ 
+        soma += numdep[i];
 
         for (int j = 0; j < i; j++){ 
             
-            if (depend[i] < depend[j]){ 
+            if (numdep[i] < numdep[j]){ 
 
-                aux = depend[i];
-                depend[i] = depend[j];
-                depend[j] = aux;
+                aux = numdep[i];
+                numdep[i] = numdep[j];
+                numdep.insert(aux);
             } 
         } 
     }
@@ -64,6 +74,6 @@ void NumeroDependentes (int *depend, int max){
 
     cout << "\nNúmero de dependentes:" << endl;
     cout << "Minima: "<< depend[0] << endl;
-    cout << "Máxima: "<< depend[max-1] + 1 << endl;//numero de dependetes deve ser o maximo por adulto
+    cout << "Máxima: "<< depend[max-1] + 1 << endl;//numero de dependetes deve ser por adulto (ver exemplo da professora)
     cout << "Média: "<< resul << endl;
 }
