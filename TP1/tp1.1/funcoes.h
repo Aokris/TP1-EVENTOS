@@ -9,10 +9,10 @@
 #include<iterator>
 #include <set>
 
-void le_arquivo (fstream &file,vector<string> &linha);
+void le_arquivo(fstream &file, vector<string> &linha);
 
 void IdadeDosUsuarios(int *idad, int max);
 
-void NumeroDependentes (int *depend, int max);
+void NumeroDependentes(int *depend, int max);
 
 using namespace std;

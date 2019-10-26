@@ -1,6 +1,6 @@
 #include "funcoes.h"
 
-void le_arquivo (fstream &file,vector<string> &linha){
+void le_arquivo(fstream &file,vector<string> &linha){
 
     string buffer;
     vector<string>::iterator ptr; 
@@ -45,7 +45,7 @@ void IdadeDosUsuarios(int *idad, int max){
    cout << "Média: "<< resul << endl;
 }
 
-void NumeroDependentes (int *depend, int max){
+void NumeroDependentes(int *depend, int max){
     int aux=0,soma=0;
     float resul;
 
