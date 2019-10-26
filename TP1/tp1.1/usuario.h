@@ -16,6 +16,11 @@ class Usuario{
     
     protected:
         Usuario(int id,string categoria, string nome, int idade, float saldo);
+        int get_id();
+        string get_categoria();
+        string get_nome();
+        int get_idade();
+        float get_saldo();
 };
     
 #endif
