@@ -48,7 +48,7 @@ void IdadeDosUsuarios(int *idad, int max){
    cout << "\nIdade dos usuários:" << endl;
    cout << "Minima: "<< idad[0] << endl;
    cout << "Máxima: "<< idad[max-1] << endl;
-   cout << "Média: "<< resul << endl;
+   cout << "Média: "<< resul << endl << endl;
 }
 
 void NumeroDependentes (int *depend, int max){
@@ -73,5 +73,5 @@ void NumeroDependentes (int *depend, int max){
     cout << "\nNúmero de dependentes:" << endl;
     cout << "Minima: "<< depend[0] << endl;
     cout << "Máxima: "<< depend[max-1] + 1 << endl;//numero de dependetes deve ser por adulto (ver exemplo da professora)
-    cout << "Média: "<< resul << endl;
+    cout << "Média: "<< resul << endl << endl;
 }
