@@ -3,5 +3,5 @@
 #include <string>
 
 EventoAdulto::EventoAdulto(int id, string nome, Usuario responsavel, int *capacidade, int *precos, int quota_idoso):Evento( id, nome, responsavel, capacidade, precos){
-
+    _quota_idoso = quota_idoso;
 }
