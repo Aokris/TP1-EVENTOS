@@ -1,5 +1,5 @@
-#ifndef EVENTOINFANTIL
-#define EVENTOINFANTIL
+#ifndef EVENTO_INFANTIL_H
+#define EVENTO_INFANTIL_H
 
 #include <iostream>
 #include "evento.h"

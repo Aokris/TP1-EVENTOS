@@ -1,5 +1,5 @@
-#ifndef TEATROFANTOCHE
-#define TEATROFANTOCHE
+#ifndef TEATRO_FANTOCHE_H
+#define TEATRO_FANTOCHE_H
 
 #include <iostream>
 #include "eventoinfantil.h"

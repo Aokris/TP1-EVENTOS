@@ -1,5 +1,5 @@
-#ifndef CINEMA
-#define CINEMA
+#ifndef CINEMA_H
+#define CINEMA_H
 
 #include "evento.h"
 #include <iostream>
