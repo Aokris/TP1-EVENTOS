@@ -3,5 +3,5 @@
 #include <iostream>
 #include <string>
 
-Idoso::Idoso(int id, string categoria, string nome, int idade,float saldo):Adulto(id, categoria, nome, idade, saldo){
+Idoso::Idoso(int id, string categoria, string nome, int idade, float saldo):Adulto(id, categoria, nome, idade, saldo){
 }

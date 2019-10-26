@@ -11,7 +11,7 @@ class Crianca : protected Usuario{
     private:
         int _id_responsavel;
     public:
-        Crianca(int id, string categoria, string nome, int idade,float saldo, int id_responsavel);
+        Crianca(int id, string categoria, string nome, int idade, float saldo, int id_responsavel);
 };
     
 #endif

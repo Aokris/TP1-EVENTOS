@@ -11,7 +11,7 @@ class Adulto : protected Usuario{
     private:
         int _id_dependente;
     public:
-        Adulto (int id, string categoria, string nome, int idade,float saldo);
+        Adulto (int id, string categoria, string nome, int idade, float saldo);
 };
     
 #endif

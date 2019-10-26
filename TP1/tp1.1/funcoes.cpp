@@ -1,14 +1,15 @@
 #include "funcoes.h"
 
-void le_arquivo (fstream &file,vector<string> &linha){
+void le_arquivo(fstream &file,vector<string> &linha){
 
     string buffer;
     vector<string>::iterator ptr; 
 
     while(!file.eof())
     {
-        getline(file, buffer,','); //ler cada coluna
-        if(buffer == "\n"){
+        getline(file, buffer,';'); //ler cada coluna
+        if(buffer.length() == 0){
+            cout<<"bruno";
 			continue;
 		}else
         linha.push_back(buffer); //adicionar ao vetor da linha    
@@ -44,29 +45,20 @@ void IdadeDosUsuarios(int *idad, int max){
    cout << "Média: "<< resul << endl;
 }
 
-void NumeroDependentes (int *depend, int max){
-    set<int> numdep;
-    set<int> iterator it; //set pra armazenar uma vez o id do responsavel
-
+void NumeroDependentes(int *depend, int max){
     int aux=0,soma=0;
     float resul;
 
     for (int i = 0; i < max; i++){ 
-        numdep.insert(depend[i]);
-    }
-
-    max = numdep.size();
-
-    for (int i = 0; i < max; i++){ 
-        soma += numdep[i];
+        soma += depend[i];
 
         for (int j = 0; j < i; j++){ 
             
-            if (numdep[i] < numdep[j]){ 
+            if (depend[i] < depend[j]){ 
 
-                aux = numdep[i];
-                numdep[i] = numdep[j];
-                numdep.insert(aux);
+                aux = depend[i];
+                depend[i] = depend[j];
+                depend[j] = aux;
             } 
         } 
     }
