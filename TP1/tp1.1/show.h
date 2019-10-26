@@ -1,5 +1,5 @@
-#ifndef SHOW
-#define SHOW
+#ifndef SHOW_H
+#define SHOW_H
 
 #include <iostream>
 #include "eventoadulto.h"

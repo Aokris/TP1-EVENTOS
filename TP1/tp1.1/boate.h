@@ -1,5 +1,5 @@
-#ifndef BOATE
-#define BOATE
+#ifndef BOATE_H
+#define BOATE_H
 
 #include <iostream>
 #include "eventoadulto.h"
