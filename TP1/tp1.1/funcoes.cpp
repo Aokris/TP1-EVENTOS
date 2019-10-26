@@ -1,18 +1,26 @@
 #include "funcoes.h"
 
-void le_arquivo(fstream &file,vector<string> &linha){
+void le_arquivo (fstream &file,vector<string> &linha){
 
     string buffer;
+    string aux;
     vector<string>::iterator ptr; 
-
+    int k=0;
     while(!file.eof())
     {
-        getline(file, buffer,';'); //ler cada coluna
-        if(buffer.length() == 0){
-            cout<<"bruno";
-			continue;
-		}else
-        linha.push_back(buffer); //adicionar ao vetor da linha    
+        getline(file, buffer,'\n'); //ler cada coluna
+        //cout<<buffer<<endl;
+        for(int i = 0; i < buffer.length();i++){
+            if(buffer[i] == ','){
+                cout<<aux<<endl;
+                linha.push_back(aux);
+                aux.clear();
+                
+            }else aux = aux + buffer[i];             
+        }
+        cout<<aux<<endl;
+        linha.push_back(aux);
+        aux.clear();
     }
 }
 
