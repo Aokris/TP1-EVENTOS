@@ -1,12 +1,20 @@
-/*Sistema de gerenciamento de vendas de eventos e controle de usuarios
+/*
+UNIVERSIDADE FEDERAL DE MINAS GERAIS - 2019/2
+Programação e Desenvolvimento de Software II
 
-PDS2 
+Trabalho Prático - Parte 1
+Sistema de gerenciamento de vendas de eventos e controle de usuários
 
-Trabalho Pratico-Parte 1
+Grupo:
+- Bruno Flister Viana (coloca a matrícula aqui)
+- Ruhann Carlos Pereira de Almeida (coloca a matrícula aqui)
+- Vítor Gabriel Peixoto Pessoa (2018048451)
+
 */
+
 #include "funcoes.h"
 
-int main (){
+int main(){
     int j=0,aux=0,k=0,i=0,tam = 0;//variaveis auxiliares
 
     int *depend = new int;//vetor de id dependentes
@@ -14,7 +22,7 @@ int main (){
     int *idad = new int;//vetor de idades
     int qcria = 0,qadult = 0,qidos = 0;//quantidade de usuarios
 
-/*-------Dados para criação de objetos-----------*/
+/*---------- Dados para criação de objetos ----------*/
     int id;
     float saldo;
     string nome,categoria;
@@ -27,11 +35,12 @@ int main (){
     fstream file;//Cria a variavel arquivo
     
     file.open("Entrada.csv");//abre o arquivo
-
-    if(!file.is_open())//verifica se o arquivo foi aberto
-    {
-        cout << "Erro! Não foi possível abrir esse arquvio"<<'\n';
-    }else{
+    
+    if(!file.is_open()){ // Verificando se o arquivo foi aberto corretamente
+        cout << "Erro! Não foi possível abrir esse arquivo" << endl;
+        cout << "Finalizando programa..." << endl;
+        return EXIT_FAILURE;
+    } else {
         le_arquivo(file, linha);//le o arquivo e coloca na variavel linha
     }
 
@@ -39,11 +48,10 @@ int main (){
         tam++;
     }
 
-        while(i!=tam){
+    while(i!=tam){
         id = stoi(linha[i]);//armazena a id de cada usuario
         
         i++;
-        
 
         categoria = linha[i];//criança, adulto etc
         
@@ -69,25 +77,38 @@ int main (){
         }
 
         if(categoria == "crianca"){
-                qcria++;
-                Crianca c (id,categoria,nome,idad[j],saldo,depend[k]);
-                crianca.push_back(c);
-                k++;
+            qcria++;
+            Crianca c (id,categoria,nome,idad[j],saldo,depend[k]);
+            crianca.push_back(c);
+            k++;
 
-            }else if(categoria == "adulto"){
-                qadult++;
-                Adulto a(id,categoria,nome,idad[j],saldo);
-                adulto.push_back(a);
+        } else if(categoria == "adulto"){
+            qadult++;
+            Adulto a(id,categoria,nome,idad[j],saldo);
+            adulto.push_back(a);
 
-            }else if(categoria == "idoso"){
-                qidos++;
-                Idoso ido(id,categoria,nome,idad[j],saldo);
-                idoso.push_back(ido);
+        } else if(categoria == "idoso"){
+            qidos++;
+            Idoso ido(id,categoria,nome,idad[j],saldo);
+            idoso.push_back(ido);
 
-            }                
-   }
+        }                
+    }
+    file.close();
 
-//---------Saida do Programa----------//
+/*---------- Leitura dos Eventos ----------*/
+    file.open("Entrada_eventos.csv");
+
+    if(!file.is_open()){ // Verificando se o arquivo foi aberto corretamente
+        cout << "Erro! Não foi possível abrir esse arquivo" << endl;
+        cout << "Finalizando programa..." << endl;
+        return EXIT_FAILURE;
+    } else {
+        le_arquivo(file, linha);
+    }
+
+/*---------- Saida do Programa ---------- */
+
 // 0 - USUÁRIOS
 //   0.1 - Número de crianças, adultos e idosos
     cout << endl << "Número de usuários:" << endl;
@@ -98,6 +119,7 @@ int main (){
 //   0.2 - Idade mínima, máxima e média para todos os usuários
     IdadeDosUsuarios(idad,j);
     cout << endl;
+
 //   0.3 - Número mínimo, médio e máximo de dependentes por adulto
     if (depend[0] == -1){
         cout << "Número de dependentes:" << endl;
@@ -126,9 +148,6 @@ int main (){
 
 //   1.4 - Número total de bilhetes de cada valor
     cout << "Número de ingressos por preço:" << endl;
-
-
-    file.close();
 
     return 0;
 }
