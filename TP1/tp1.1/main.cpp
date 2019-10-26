@@ -88,12 +88,17 @@ int main (){
    }
 
 //---------Saida do Programa----------//
+// 0 - USUÁRIOS
+//   0.1 - Número de crianças, adultos e idosos
     cout << "\nNúmero de usuários:" << endl;
     cout << "Crianças: " << qcria << endl;
     cout << "Adultos: " << qadult << endl;
     cout << "Idosos: " << qidos << endl;
 
+//   0.2 - Idade mínima, máxima e média para todos os usuários
     IdadeDosUsuarios(idad,j);
+
+//   0.3 - Número mínimo, médio e máximo de dependentes por adulto
     if (depend[0] == -1){
         cout << "\nNúmero de dependentes:" << endl;
         cout << "Minima: "<< 0 << endl;
@@ -102,6 +107,18 @@ int main (){
     }else{
         NumeroDependentes(depend,k);
     }
+
+//   0.4 - Lista de dependentes por adulto
+
+
+// 1 - EVENTOS
+//   1.1 - Número de eventos de cada tipo
+
+//   1.2 - Número de eventos vendidos por cada usuário
+
+//   1.3 - Nome e ID do evento com a maior cota para idosos
+
+//   1.4 - Número total de bilhetes de cada valor
 
     file.close();
 
