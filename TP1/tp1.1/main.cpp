@@ -35,31 +35,36 @@ int main (){
         le_arquivo(file, linha);//le o arquivo e coloca na variavel linha
     }
 
-    for(lin = linha.begin(); lin < linha.end()-1; lin++){
+    for(lin = linha.begin(); lin < linha.end(); lin++){
         tam++;
-    }//pega quantas palavras tem no arquivo
- 
-        while(i != tam){
-         
+    }
+
+        while(i!=tam){
         id = stoi(linha[i]);//armazena a id de cada usuario
+        
         i++;
         
 
         categoria = linha[i];//criança, adulto etc
+        
         i++;
 
         nome = linha[i];//nome do usuario
+        
         i++;
 
         idad[j] = stoi(linha[i]);//idade do usuario
+        
         j++;    
         i++;
 
         saldo = stod(linha[i]);//saldo bancario
+       
         i++;
 
         if(categoria == "crianca"){//se criança pega o dependente
             depend[k] = stoi(linha[i]);//achar outra forma de somar o numero maximo de dependetes pois queremos imprimir o numero maximo por adulto
+            
             i++;
         }
 
@@ -71,15 +76,15 @@ int main (){
 
             }else if(categoria == "adulto"){
                 qadult++;
-                Adulto a (id,categoria,nome,idad[j],saldo);
+                Adulto a(id,categoria,nome,idad[j],saldo);
                 adulto.push_back(a);
 
             }else if(categoria == "idoso"){
                 qidos++;
-                Idoso ido (id,categoria,nome,idad[j],saldo);
+                Idoso ido(id,categoria,nome,idad[j],saldo);
                 idoso.push_back(ido);
 
-            }        
+            }                
    }
 
 //---------Saida do Programa----------//

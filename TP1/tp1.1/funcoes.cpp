@@ -9,16 +9,15 @@ void le_arquivo (fstream &file,vector<string> &linha){
     while(!file.eof())
     {
         getline(file, buffer,'\n'); //ler cada coluna
-        //cout<<buffer<<endl;
         for(int i = 0; i < buffer.length();i++){
             if(buffer[i] == ','){
-                cout<<aux<<endl;
+                
                 linha.push_back(aux);
                 aux.clear();
                 
             }else aux = aux + buffer[i];             
         }
-        cout<<aux<<endl;
+        
         linha.push_back(aux);
         aux.clear();
     }
@@ -29,7 +28,6 @@ void IdadeDosUsuarios(int *idad, int max){
     float resul;
 
     for (int i = 0; i < max; i++) { 
-        cout<<idad[i]<<endl;
         soma += idad[i];
     }
 
@@ -53,7 +51,7 @@ void IdadeDosUsuarios(int *idad, int max){
    cout << "Média: "<< resul << endl;
 }
 
-void NumeroDependentes(int *depend, int max){
+void NumeroDependentes (int *depend, int max){
     int aux=0,soma=0;
     float resul;
 
