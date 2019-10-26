@@ -1,3 +1,6 @@
+#ifndef FUNCOES_H
+#define FUNCOES_H
+
 #include "adulto.h"
 #include "crianca.h"
 #include "idoso.h"
@@ -6,8 +9,10 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
-#include<iterator>
+#include <iterator>
 #include <set>
+
+using namespace std;
 
 void le_arquivo(fstream &file, vector<string> &linha);
 
@@ -15,4 +20,5 @@ void IdadeDosUsuarios(int *idad, int max);
 
 void NumeroDependentes(int *depend, int max);
 
-using namespace std;
+
+#endif

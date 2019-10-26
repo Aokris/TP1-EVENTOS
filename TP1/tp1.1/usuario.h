@@ -15,7 +15,7 @@ class Usuario{
         float _saldo;
     
     protected:
-        Usuario(int id,string categoria, string nome, int idade, float saldo);
+        Usuario(int id, string categoria, string nome, int idade, float saldo);
 };
     
 #endif
