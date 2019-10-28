@@ -19,7 +19,7 @@ void le_arquivo(fstream &file, vector<string> &linha);
 
 void IdadeDosUsuarios(int *idad, int max);
 
-void NumeroDependentes(int *depend, int qp);
+void NumeroDependentes(int *depend, int qp, int np);
 
 
 #endif
