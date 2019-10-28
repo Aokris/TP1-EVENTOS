@@ -13,7 +13,6 @@ class Crianca : protected Usuario{
     public:
         Crianca(int id, string categoria, string nome, int idade, float saldo, int id_responsavel);
         int get_id_responsavel();
-        string get_nome();
 };
     
 #endif
