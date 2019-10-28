@@ -7,7 +7,7 @@
 using namespace std;
 
 class Usuario{
-    private:
+    protected:
         int _id;
         string _categoria;
         string _nome;

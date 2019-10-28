@@ -4,9 +4,9 @@
 #include <iostream>
 #include "evento.h"
 
-class EventoInfantil : protected Evento{
+class EventoInfantil : public  Evento{
     protected:
-        EventoInfantil(int id, string nome, Usuario *responsavel, int *capacidade, int *precos);
+        EventoInfantil(int id, string nome, int id_responsavel, int &capacidade, int &precos);
 };
 
 #endif
