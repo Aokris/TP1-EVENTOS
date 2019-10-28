@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Adulto : public: Usuario{
+class Adulto : public Usuario{
     private:
         int _id_dependente;
     public:
