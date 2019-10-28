@@ -29,8 +29,11 @@ int main(){
 
     vector<string> linha; //iniciar o vetor da linha
     vector<Crianca> crianca; //iniciar o vetor de crianças
-    vector<Adulto> adulto; //iniciar o vetor de adultos 
+    vector<Crianca>::iterator itc;
+    vector<Adulto> adulto; //iniciar o vetor de adultos
+    vector<Adulto>::iterator ita; 
     vector<Idoso> idoso; //iniciar o vetor de idosos
+    vector<Idoso>:: iterator itd;
     vector<string>::iterator lin;//iterator para linha
     fstream file;//Cria a variavel arquivo
     
@@ -135,7 +138,19 @@ int main(){
 
 //   0.4 - Lista de dependentes por adulto
     cout << "Dependentes:" << endl;
+    for(itc = crianca.begin(); itc<crianca.end();itc++){
+        for(ita = adulto.begin(); ita!=adulto.end();ita++){
+            if(itc.get_id_responsavel() == ita.get_id()){
+                cout<<ita.get_nome()<<" (ID: "<<ita.get_id()<<"): "<<itc.get_nome()<<" (ID: "<<itc.get_id_responsavel()<<"): "<<endl;
+        }
+    }
 
+    for(itc = crianca.begin(); itc<crianca.end();itc++){
+        for(itd = idoso.begin(); itd!=idoso.end();itd++){
+            if(itc.get_id_responsavel() == itd.get_id()){
+                cout<<itd.get_nome()<<" (ID: "<<itd.get_id()<<"): "<<itc.get_nome()<<" (ID: "<<itc.get_id_responsavel()<<"): "<<endl;
+        }
+    }
 // 1 - EVENTOS
 //   1.1 - Número de eventos de cada tipo
     cout << "Número de eventos:" << endl;

@@ -21,6 +21,5 @@ void IdadeDosUsuarios(int *idad, int max);
 
 void NumeroDependentes(int *depend, int qp, int np);
 
-void ListagemDependentes(int *depend, vector<Adulto> a, vector<Idoso> ido);
 
 #endif
