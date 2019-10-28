@@ -38,6 +38,7 @@ int main(){
     vector<vector<string>> linha2;    //iniciar o vetor da linha
     vector<Crianca> crianca; //iniciar o vetor de crianças
     vector<Crianca>::iterator itc;
+
     vector<Adulto> adulto; //iniciar o vetor de adultos
     vector<Adulto>::iterator ita;
     vector<Idoso> idoso; //iniciar o vetor de idosos
@@ -186,8 +187,8 @@ int main(){
         }
     }
 
-    for(itc = crianca.begin(); itc<crianca.end();itc++){
-        for(itd = idoso.begin(); itd!=idoso.end();itd++){
+    for(itc = crianca.begin(); itc < crianca.end();itc++){
+        for(itd = idoso.begin(); itd != idoso.end(); itd++){
             if(itc->get_id_responsavel() == itd->get_id()){
                 cout<<itd->get_nome()<<" (ID: "<<itd->get_id()<<"): "<<itc->get_nome()<<" (ID: "<<itc->get_id_responsavel()<<"): "<<endl;
             }
