@@ -51,49 +51,47 @@ void IdadeDosUsuarios(int *idad, int max){
    cout << "Média: "<< resul << endl << endl;
 }
 
-void NumeroDependentes (int *depend, int qp){
+void NumeroDependentes (int *depend, int qp, int np){
     map<int, int> numdep;
     map<int, int>::iterator it;
-    int maior, menor, soma = 0;
+    int maior, menor, soma=0;
     float resul;
     int max = sizeof(depend);
 
-    /*for (int i = 0; i < max; i++){
-        for (int j = 0; j < i; j++){ 
-            
-            if (depend[i] < depend[j]){ 
-
-                aux = depend[i];
-                depend[i] = depend[j];
-                depend[j] = aux;
-            } 
-        } 
-    }*/
-
-    for(int i = 0; i < max; i++){
+    for(int i = 0; i<max;i++){
         numdep[depend[i]]++;
     }
     
     it = numdep.begin();
     maior = it->second;
-    cout << maior;
+    menor = it->second;
+
+    for(it = numdep.begin(); it!=numdep.end();it++){
+        if(maior < it->second){
+            maior = it->second;
+        }
+
+        if(menor > it->second){
+            menor = it->second;
+        }
+    }
 
     if(qp == 0){
         menor = 0;
-    }else{
-        it = numdep.end();
-        menor = it->second;
-        cout<<menor;
     }
 
-    for(it = numdep.begin(); it != numdep.end(); it++){
+    for(it = numdep.begin(); it!=numdep.end();it++){
         soma = soma + it->second;
     }
-    
-    resul = (float)soma/numdep.size();
 
-    cout << "Número de dependentes:" << endl;
+    if(qp == 0){
+        resul = (float)soma/np;
+    }else{
+        resul = (float)soma/np;
+    }
+
+    cout << "\nNúmero de dependentes:" << endl;
     cout << "Minima: "<< menor << endl;
-    cout << "Máxima: "<< maior << endl; //numero de dependetes deve ser por adulto (ver exemplo da professora)
-    cout << "Média: "<< resul << endl << endl;
+    cout << "Máxima: "<< maior << endl;//numero de dependetes deve ser por adulto (ver exemplo da professora)
+    cout << "Média: "<< resul << endl;
 }

@@ -6,7 +6,7 @@ Trabalho Prático - Parte 1
 Sistema de gerenciamento de vendas de eventos e controle de usuários
 
 Grupo:
-- Bruno Flister Viana (coloca a matrícula aqui)
+- Bruno Flister Viana (2018048567)
 - Ruhann Carlos Pereira de Almeida (coloca a matrícula aqui)
 - Vítor Gabriel Peixoto Pessoa (2018048451)
 
@@ -15,7 +15,7 @@ Grupo:
 #include "funcoes.h"
 
 int main(){
-    int j=0, aux=0, k=0, i=0, tam = 0;//variaveis auxiliares
+    int j=0,aux=0,k=0,i=0,tam = 0;//variaveis auxiliares
 
     int *depend = new int;//vetor de id dependentes
     depend[0] = -1; // usado para caso extremo de nenhum dependente
@@ -70,25 +70,26 @@ int main(){
        
         i++;
 
-        // Inserindo usuário no vector correspondente à sua categoria
-        if(categoria == "crianca"){
-            // Armazenando o ID do responsável pela kid
-            depend[k] = stoi(linha[i]);
+        if(categoria == "crianca"){//se criança pega o dependente
+            depend[k] = stoi(linha[i]);//achar outra forma de somar o numero maximo de dependetes pois queremos imprimir o numero maximo por adulto
+            
             i++;
+        }
 
+        if(categoria == "crianca"){
             qcria++;
-            Crianca c(id, categoria, nome, idad[j], saldo, depend[k]);
+            Crianca c (id,categoria,nome,idad[j],saldo,depend[k]);
             crianca.push_back(c);
             k++;
 
         } else if(categoria == "adulto"){
             qadult++;
-            Adulto a(id, categoria, nome, idad[j], saldo);
+            Adulto a(id,categoria,nome,idad[j],saldo);
             adulto.push_back(a);
 
         } else if(categoria == "idoso"){
             qidos++;
-            Idoso ido(id, categoria, nome, idad[j], saldo);
+            Idoso ido(id,categoria,nome,idad[j],saldo);
             idoso.push_back(ido);
 
         }                
@@ -120,13 +121,16 @@ int main(){
     cout << endl;
 
 //   0.3 - Número mínimo, médio e máximo de dependentes por adulto
-    if(depend[0] == -1){ // Atalho pro caso extremo de nenhum dependente
-        cout << "Número de dependentes:" << endl;
+    IdadeDosUsuarios(idad,j);
+    if (depend[0] == -1){
+        cout << "\nNúmero de dependentes:" << endl;
         cout << "Minima: "<< 0 << endl;
         cout << "Máxima: "<< 0 << endl;
-        cout << "Média: "<< 0 << endl << endl;
-    } else{
-        NumeroDependentes(depend, k);
+        cout << "Média: "<< 0 << endl;
+    }else{
+        if(qcria == (qcria+qadult+qidos)){
+        NumeroDependentes(depend,qcria, qadult+qidos);
+        }else NumeroDependentes(depend,0,qidos+qadult);
     }
 
 //   0.4 - Lista de dependentes por adulto
