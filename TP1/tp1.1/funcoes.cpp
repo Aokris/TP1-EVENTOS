@@ -1,9 +1,10 @@
 #include "funcoes.h"
 
-void le_arquivo(fstream &file,vector<string> &linha){
+void le_arquivo(fstream &file,vector<string> &linha,int *qlinhas){
 
     string buffer;
-    vector<string>::iterator ptr; 
+    vector<string>::iterator ptr;
+    int i = 0,k = 0;
 
     while(!file.eof())
     {
@@ -11,8 +12,11 @@ void le_arquivo(fstream &file,vector<string> &linha){
         if(buffer.length() == 0){
             cout<<"bruno";
 			continue;
+            qlinhas[i] = k;
+            i++;
 		}else
-        linha.push_back(buffer); //adicionar ao vetor da linha    
+            linha.push_back(buffer); //adicionar ao vetor da linha    
+        k++;
     }
 }
 
