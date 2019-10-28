@@ -14,6 +14,8 @@ Grupo:
 
 #include "funcoes.h"
 
+using namespace std;
+
 int main(){
 
     int j = 0, k = 0, i = 0, x = 0, n = 0, tam = 0; //variaveis auxiliares
@@ -220,6 +222,12 @@ int main(){
 
     //   1.4 - Número total de bilhetes de cada valor
     cout << "Número de ingressos por preço:" << endl;*/
+    delete(qlinhas);
+    delete(depend);
+    delete(idad);
+    delete(ingEven);
+    delete(ValorEven);
+    delete(horarios);
 
     return 0;
 }
