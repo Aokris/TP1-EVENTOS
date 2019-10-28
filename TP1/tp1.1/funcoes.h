@@ -11,6 +11,7 @@
 #include <fstream>
 #include <iterator>
 #include <set>
+#include <map>
 
 using namespace std;
 
@@ -18,7 +19,7 @@ void le_arquivo(fstream &file, vector<string> &linha);
 
 void IdadeDosUsuarios(int *idad, int max);
 
-void NumeroDependentes(int *depend, int max);
+void NumeroDependentes(int *depend, int qp);
 
 
 #endif

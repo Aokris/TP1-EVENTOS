@@ -53,8 +53,8 @@ void IdadeDosUsuarios(int *idad, int max){
 
 void NumeroDependentes (int *depend, int qp){
     map<int, int> numdep;
-    map<int, int> iterator it
-    int maior, menor,soma=0;
+    map<int, int>::iterator it;
+    int maior, menor, soma = 0;
     float resul;
     int max = sizeof(depend);
 
@@ -92,8 +92,8 @@ void NumeroDependentes (int *depend, int qp){
     
     resul = (float)soma/numdep.size();
 
-    cout << "\nNúmero de dependentes:" << endl;
+    cout << "Número de dependentes:" << endl;
     cout << "Minima: "<< menor << endl;
-    cout << "Máxima: "<< maior << endl;//numero de dependetes deve ser por adulto (ver exemplo da professora)
-    cout << "Média: "<< resul << endl;
+    cout << "Máxima: "<< maior << endl; //numero de dependetes deve ser por adulto (ver exemplo da professora)
+    cout << "Média: "<< resul << endl << endl;
 }
