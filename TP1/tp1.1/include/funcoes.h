@@ -19,7 +19,8 @@
 
 using namespace std;
 
-void le_arquivo(fstream &file, vector<string> &linha, int *qlinhas);
+std::vector<std::string> splitLine(std::string line, char sep);
+void readCsv( std::vector<std::vector<std::string>> &resutlCsv, std::string nameFile, char sep);
 
 void IdadeDosUsuarios(int *idad, int max);
 

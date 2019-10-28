@@ -21,19 +21,21 @@ using namespace std;
 
 int main(){
 
-    int j = 0, k = 0, i = 0, x = 0, n = 0, tam = 0; //variaveis auxiliares
-    int *qlinhas = new int[100];
+    int j = 0, k = 0, x = 0, n = 0, tam = 0; //variaveis auxiliares
+    unsigned int i = 0 ;
+    int *qlinhas = new int[1000];
 
-    int *depend = new int;                //vetor de id dependentes
+    int *depend = new int[1000];                //vetor de id dependentes
     depend[0] = -1;                       // usado para caso extremo de nenhum dependente
-    int *idad = new int;                  //vetor de idades
+    int *idad = new int[1000];                  //vetor de idades
     int qcria = 0, qadult = 0, qidos = 0; //quantidade de usuarios
     int id = 0;
     float saldo = 0.0;
     string nome, categoria;
 
     //-------Dados para criação de objetos(Usuários)-----------//
-    vector<string> linha;    //iniciar o vetor da linha
+    vector<vector<string>> linha;    //iniciar o vetor da linha
+    vector<vector<string>> linha2;    //iniciar o vetor da linha
     vector<Crianca> crianca; //iniciar o vetor de crianças
     vector<Crianca>::iterator itc;
     vector<Adulto> adulto; //iniciar o vetor de adultos
@@ -51,9 +53,9 @@ int main(){
     string nomeEven;
     int IdDono = 0;
     int qtipoEven = 0;
-    int *ingEven = new int;
-    double *ValorEven = new double;
-    int *horarios = new int;
+    int *ingEven = new int[1000];
+    double *ValorEven = new double[1000];
+    int *horarios = new int[1000];
 
     //------Dados para criação de objetos(Eventos)-----------//
 
@@ -62,39 +64,30 @@ int main(){
     vector<Boate> boate;
     vector<TeatroFantoche> fantoche;
 
-    file.open("Usuarios.csv"); //abre o arquivo
+    readCsv(linha,"Usuarios.csv",';'); //le o arquivo e coloca na variavel linha
 
-    if (!file.is_open()){ // Verificando se o arquivo foi aberto corretamente
-        cout << "Erro! Não foi possível abrir esse arquivo" << endl;
-        cout << "Finalizando programa..." << endl;
-        return EXIT_FAILURE;
-    }else{
-        le_arquivo(file, linha, qlinhas); //le o arquivo e coloca na variavel linha
-    }
+    // Process line
+    for (i = 0; i< linha.size();i++){
+        j = 0;
 
-    for (lin = linha.begin(); lin < linha.end(); lin++)
-        tam++;
-
-    while (i != tam){
-        id = atoi (linha[i].c_str()); //armazena a id de cada usuario
-        i++;
-
-        categoria = linha[i]; //criança, adulto etc
-        i++;
-
-        nome = linha[i]; //nome do usuario
-        i++;
-
-        idad[j] = atoi (linha[i].c_str()); //idade do usuario
+        id = atoi (linha[i][j].c_str()); //armazena a id de cada usuario
         j++;
-        i++;
+        
+        categoria = linha[i][j]; //criança, adulto etc
+        j++;
 
-        saldo = strtod(linha[i].c_str(), NULL); //saldo bancario
-        i++;
+        nome = linha[i][j]; //nome do usuario
+        j++;
+
+        idad[i] = atoi (linha[i][j].c_str()); //idade do usuario
+        j++;
+
+        saldo = atof(linha[i][j].c_str());//saldo bancario
+        j++;
 
         if (categoria == "crianca"){//se criança pega o dependente
-            depend[k] = atoi (linha[i].c_str()); //achar outra forma de somar o numero maximo de dependetes pois queremos imprimir o numero maximo por adulto
-            i++;
+            depend[k] = atoi (linha[i][j].c_str()); //achar outra forma de somar o numero maximo de dependetes pois queremos imprimir o numero maximo por adulto
+            j++;
         }if (categoria == "crianca"){
             qcria++;
             Crianca c(id, categoria, nome, idad[j], saldo, depend[k]);
@@ -108,66 +101,57 @@ int main(){
             qidos++;
             Idoso ido(id, categoria, nome, idad[j], saldo);
             idoso.push_back(ido);
-        }
+        }        
     }
 
-    file1.open("Entrada_eventos.csv"); //abre o arquivo
+    readCsv(linha2,"Entrada_eventos.csv",';'); //le o arquivo e coloca na variavel linha
+    
 
-    if (!file1.is_open()){ // Verificando se o arquivo foi aberto corretamente
-        cout << "Erro! Não foi possível abrir esse arquivo" << endl;
-        cout << "Finalizando programa..." << endl;
-        return EXIT_FAILURE;
-    }else{
-        le_arquivo(file, linha, qlinhas); //le o arquivo e coloca na variavel linha
-    }
-
-    tam = 0;
-    i = 0;
-
-    for (lin = linha.begin(); lin < linha.end() - 1; lin++){
-        tam++;
-    } //pega quantas palavras tem no arquivo
-
-    while (i != tam){
-
+    for (i = 0; i< linha2.size();i++){
+        j = 0;
+        
         //Capturação dos valores para passagem de parametros
-
-        IdEven = atoi (linha[i].c_str());
-        i++;
-        x++;
-        categoriaEven = linha[i];
-        i++;
-        x++;
-        tipoEven = linha[i];
-        i++;
-        x++;
-        nomeEven = linha[i];
-        i++;
-        x++;
-        qtipoEven = atoi (linha[i].c_str());
-        i++;
+        IdEven = stoi(linha2[i][j]);
+        j++;
         x++;
 
-        for (int k = 0; k < qtipoEven; k++){
-            ingEven[k] = atoi (linha[i].c_str());
-            i++;
+        categoriaEven = linha2[i][j];
+        j++;
+        x++;
+
+        tipoEven = linha2[i][j];
+        j++;
+        x++;
+
+        nomeEven = linha2[i][j];
+        j++;
+        x++;
+
+        qtipoEven = atoi (linha2[i][j].c_str());
+        j++;
+        x++;
+
+        /*for (int k = 0; k < qtipoEven; k++){
+            ingEven[k] = atoi (linha2[i][j].c_str());
+            j++;
             x++;
-            ValorEven[k] = strtod(linha[i].c_str(), NULL);
-            i++;
+
+            ValorEven[k] = atof(linha2[i][j].c_str());
+            j++;
             x++;
         }
         
         for (int k = 0; k < qlinhas[n] - x; k++){
-            horarios[k] = atoi (linha[i].c_str());
-            i++;
+            horarios[k] = atoi (linha2[i][j].c_str());
+            j++;
             n++;
-        }
+        }*/
         x = 0;
         // Area para cria os objetos de acordo com o tipo ou categoria
     }
 
     //---------Saida do Programa----------//
-    cout << "\nNúmero de usuários:" << endl;
+    /*cout << "\nNúmero de usuários:" << endl;
     cout << "Crianças: " << qcria << endl;
     cout << "Adultos: " << qadult << endl;
     cout << "Idosos: " << qidos << endl
@@ -224,13 +208,13 @@ int main(){
     cout << "Evento com maior cota para idoso:" << endl;
 
     //   1.4 - Número total de bilhetes de cada valor
-    cout << "Número de ingressos por preço:" << endl;
-    delete(qlinhas);
-    delete(depend);
-    delete(idad);
-    delete(ingEven);
-    delete(ValorEven);
-    delete(horarios);
+    cout << "Número de ingressos por preço:" << endl;*/ 
+    delete [] qlinhas ;
+    delete [] depend ;
+    delete [] idad ;
+    delete [] ingEven ;
+    delete [] ValorEven ;
+    delete [] horarios ;
 
     return 0;
 }

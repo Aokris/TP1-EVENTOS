@@ -1,29 +1,38 @@
 #include "funcoes.h"
 
-void le_arquivo (fstream &file,vector<string> &linha,int *qlinhas){
+std::vector<std::string> splitLine(std::string line, char sep){
 
-    string buffer;
-    string aux;
-    vector<string>::iterator ptr; 
-    int k=0,n=0,j=0;
-    while(!file.eof())
-    {
-        getline(file, buffer,'\n'); //ler cada coluna
-        for(int i = 0; i < buffer.length();i++){
-            if(buffer[i] == ','){
-                
-                linha.push_back(aux);
-                aux.clear();
-                n++;
-                
-            }else aux = aux + buffer[i];             
-        }
-        
-        linha.push_back(aux);
-        aux.clear();
-    }
-    qlinhas[j] = n;
-    j++;
+    // Convert string in stream string
+    std::istringstream split(line);
+
+    // Create vector for line 
+    std::vector<std::string> lineVector;
+
+    // Split line for character separator
+    for (std::string each; std::getline(split, each,sep); lineVector.push_back(each));
+
+    return lineVector;
+}
+
+
+// Function for read file csv
+void readCsv( std::vector<std::vector<std::string>> &resutlCsv, std::string nameFile, char sep){
+
+    std::string lineString;
+    std::ifstream myfile(nameFile);
+
+    // Read file if correct name
+    if (myfile.is_open()){
+
+        // Process file line by line
+        while (getline(myfile, lineString))
+  
+            resutlCsv.push_back(splitLine(lineString,sep));
+
+        myfile.close();
+
+    }else
+        std::cout << "Unable to open file";
 }
 
 void IdadeDosUsuarios(int *idad, int max){

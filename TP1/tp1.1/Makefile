@@ -27,4 +27,4 @@ run: main
 	./main
 
 clean:
-	$(RM) -r $(OBJDIR)/*
+	$(RM) -r $(OBJDIR)/* ./main
