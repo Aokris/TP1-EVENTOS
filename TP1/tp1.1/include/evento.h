@@ -5,7 +5,7 @@
 #include <string>
 #include "usuario.h"
 
-class Evento:public Usuario{
+class Evento: public Usuario{
     private:
         int _id;
         string _nome;

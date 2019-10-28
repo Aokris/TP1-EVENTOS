@@ -14,7 +14,7 @@ class Usuario{
         int _idade;
         float _saldo;
     
-    protected:
+    public:
         Usuario(int id,string categoria, string nome, int idade, float saldo);
         int get_id();
         string get_categoria();

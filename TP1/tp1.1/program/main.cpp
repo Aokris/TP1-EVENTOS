@@ -117,7 +117,7 @@ int main(){
             }        
    }
 
-   file1.open("Entrada.csv");//abre o arquivo
+   file1.open("Entrada_eventos.csv");//abre o arquivo
     
     if(!file1.is_open()){ // Verificando se o arquivo foi aberto corretamente
         cout << "Erro! Não foi possível abrir esse arquivo" << endl;
@@ -196,7 +196,7 @@ int main(){
     }
 
 //   0.4 - Lista de dependentes por adulto
-    cout << "Dependentes:" << endl;
+    cout << endl <<"Dependentes:" << endl;
     for(itc = crianca.begin(); itc<crianca.end();itc++){
         for(ita = adulto.begin(); ita!=adulto.end();ita++){
             if(itc->get_id_responsavel() == ita->get_id()){
@@ -212,19 +212,19 @@ int main(){
     }}
 // 1 - EVENTOS
 //   1.1 - Número de eventos de cada tipo
-    cout << "Número de eventos:" << endl;
+    cout<< endl << "Número de eventos:" << endl;
     cout << "Adultos:" << endl;
     cout << "Livres:" << endl;
     cout << "Infantis:" << endl << endl;
 
 //   1.2 - Número de eventos vendidos por cada usuário
-    cout << "Número de eventos que o usuário possui:" << endl;
+    cout <<endl<< "Número de eventos que o usuário possui:" << endl;
 
 //   1.3 - Nome e ID do evento com a maior cota para idosos
-    cout << "Evento com maior cota para idoso:" << endl;
+    cout <<endl<< "Evento com maior cota para idoso:" << endl;
 
 //   1.4 - Número total de bilhetes de cada valor
-    cout << "Número de ingressos por preço:" << endl;
+    cout <<endl<< "Número de ingressos por preço:" << endl;
 
     return 0;
 }

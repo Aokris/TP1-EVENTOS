@@ -9,11 +9,10 @@ Metodo para pegar oque será inserido, fazer igual o do ruhann mudar de acordo c
 
 	
 	
-	Lista de dependentes por adulto
+	Lista de dependentes por adulto - ok
 		
 	
 	Numero de eventos de cada tipo
-		Criar vetor para cada evento e armazenar de acordo com o tipo de evento, igual o ruhann fez pra usuarios
 	
 	Numero de Eventos vendidos por cada usuario
 	
