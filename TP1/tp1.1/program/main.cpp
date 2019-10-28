@@ -146,6 +146,9 @@ int main(){
         nomeEven = linha[i];
         i++;
         x++;
+        IdDono = stoi(linha[i]);
+        i++;
+        x++;
         qtipoEven = stoi(linha[i]);
         i++;
         x++;
