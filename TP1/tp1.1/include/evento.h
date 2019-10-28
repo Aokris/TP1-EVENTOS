@@ -5,16 +5,16 @@
 #include <string>
 #include "usuario.h"
 
-class Evento:public Usuario{
+class Evento{
     private:
         int _id;
         string _nome;
-        Usuario *_responsavel;
+        int _id_responsavel;
         int *_capacidade;
         int *_precos;
     
     protected:
-        Evento(int id, string nome, Usuario *responsavel, int *capacidade, int *precos);
+        Evento(int id, string nome, int id_responsavel, int &capacidade, int &precos);
 
 };
 #endif

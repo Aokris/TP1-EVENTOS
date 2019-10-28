@@ -7,14 +7,14 @@
 using namespace std;
 
 class Usuario{
-    private:
+    protected:
         int _id;
         string _categoria;
         string _nome;
         int _idade;
         float _saldo;
     
-    protected:
+    public:
         Usuario(int id,string categoria, string nome, int idade, float saldo);
         int get_id();
         string get_categoria();

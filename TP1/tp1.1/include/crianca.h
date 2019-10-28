@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Crianca : protected Usuario{
+class Crianca : public Usuario{
     private:
         int _id_responsavel;
     public:

@@ -4,13 +4,13 @@
 #include <iostream>
 #include "eventoadulto.h"
 
-class Boate : protected EventoAdulto{
+class Boate : public  EventoAdulto{
     private:
     int _horaInicio;
     int _horaFim;
 
     protected:
-        Boate(int quota_idoso, int horaInicio, int horaFim, int id, string nome, Usuario *responsavel, int *capacidade, int *precos);
+        Boate(int quota_idoso, int horaInicio, int horaFim, int id, string nome, int id_responsavel, int &capacidade, int &precos);
 };
 
 #endif

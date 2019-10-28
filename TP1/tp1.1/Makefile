@@ -10,7 +10,8 @@ SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
 
 # -g debug, --coverage para cobertura
-CFLAGS := -g -Wall -O3 -std=c++11
+# CFLAGS := -g -Wall -O3 -std=c++11
+CFLAGS := -g -O3 -std=c++11
 INC := -I include/
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
@@ -18,13 +19,12 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 main: $(OBJECTS)
-	@mkdir -p $(BINDIR)
-	$(CC) $(CFLAGS) $(INC) $(MAIN) $^ -o $(BINDIR)/main
+	$(CC) $(CFLAGS) $(INC) $(MAIN) $^ -o main
 
 all: main
 
 run: main
-	$(BINDIR)/main
+	./main
 
 clean:
-	$(RM) -r $(OBJDIR)/* $(BINDIR)/*
+	$(RM) -r $(OBJDIR)/*

@@ -4,11 +4,11 @@
 #include "evento.h"
 #include <iostream>
 
-class Cinema : protected Evento{
+class Cinema : public  Evento{
     private:
         int *_horarios;
         int _duracao;
     protected:
-    Cinema(int id, string nome, Usuario *responsavel, int *capacidade, int *precos, int *horario, int duracao);
+    Cinema(int id, string nome, int id_responsavel, int &capacidade, int &precos, int &horario, int duracao);
 };
 #endif
