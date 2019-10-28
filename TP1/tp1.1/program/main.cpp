@@ -12,6 +12,9 @@ Grupo:
 
 */
 
+#include <string>
+#include <iostream>
+#include <stdlib.h>
 #include "funcoes.h"
 
 using namespace std;
@@ -54,7 +57,7 @@ int main(){
 
     //------Dados para criação de objetos(Eventos)-----------//
 
-    /*vector<Cinema> cinema;
+    vector<Cinema> cinema;
     vector<Show> show;
     vector<Boate> boate;
     vector<TeatroFantoche> fantoche;
@@ -73,7 +76,7 @@ int main(){
         tam++;
 
     while (i != tam){
-        id = stoi(linha[i]); //armazena a id de cada usuario
+        id = atoi (linha[i].c_str()); //armazena a id de cada usuario
         i++;
 
         categoria = linha[i]; //criança, adulto etc
@@ -82,15 +85,15 @@ int main(){
         nome = linha[i]; //nome do usuario
         i++;
 
-        idad[j] = stoi(linha[i]); //idade do usuario
+        idad[j] = atoi (linha[i].c_str()); //idade do usuario
         j++;
         i++;
 
-        saldo = stod(linha[i]); //saldo bancario
+        saldo = strtod(linha[i].c_str(), NULL); //saldo bancario
         i++;
 
         if (categoria == "crianca"){//se criança pega o dependente
-            depend[k] = stoi(linha[i]); //achar outra forma de somar o numero maximo de dependetes pois queremos imprimir o numero maximo por adulto
+            depend[k] = atoi (linha[i].c_str()); //achar outra forma de somar o numero maximo de dependetes pois queremos imprimir o numero maximo por adulto
             i++;
         }if (categoria == "crianca"){
             qcria++;
@@ -129,7 +132,7 @@ int main(){
 
         //Capturação dos valores para passagem de parametros
 
-        IdEven = stoi(linha[i]);
+        IdEven = atoi (linha[i].c_str());
         i++;
         x++;
         categoriaEven = linha[i];
@@ -141,21 +144,21 @@ int main(){
         nomeEven = linha[i];
         i++;
         x++;
-        qtipoEven = stoi(linha[i]);
+        qtipoEven = atoi (linha[i].c_str());
         i++;
         x++;
 
         for (int k = 0; k < qtipoEven; k++){
-            ingEven[k] = stoi(linha[i]);
+            ingEven[k] = atoi (linha[i].c_str());
             i++;
             x++;
-            ValorEven[k] = stod(linha[i]);
+            ValorEven[k] = strtod(linha[i].c_str(), NULL);
             i++;
             x++;
         }
         
         for (int k = 0; k < qlinhas[n] - x; k++){
-            horarios[k] = stoi(linha[i]);
+            horarios[k] = atoi (linha[i].c_str());
             i++;
             n++;
         }
@@ -221,7 +224,7 @@ int main(){
     cout << "Evento com maior cota para idoso:" << endl;
 
     //   1.4 - Número total de bilhetes de cada valor
-    cout << "Número de ingressos por preço:" << endl;*/
+    cout << "Número de ingressos por preço:" << endl;
     delete(qlinhas);
     delete(depend);
     delete(idad);
