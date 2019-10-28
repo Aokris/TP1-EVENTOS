@@ -4,6 +4,10 @@
 #include "adulto.h"
 #include "crianca.h"
 #include "idoso.h"
+#include "cinema.h"
+#include "teatrodefantoches.h"
+#include "show.h"
+#include "boate.h"
 #include <iostream>
 #include <string>
 #include <vector>

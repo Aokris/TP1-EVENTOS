@@ -42,9 +42,10 @@ int main (){
 
 /*-------Dados para criação de objetos(Eventos)-----------*/
 
-
-
-
+    vector<Cinema> cinema;
+    vector<Show> show;
+    vector<Boate> boate;
+    vector<TeatroFantoche> fantoche;
     
     file.open("Usuarios.csv");//abre o arquivo
 
@@ -152,10 +153,8 @@ int main (){
             n++;
         }
         x = 0;
-        /* Area para cria os objetos de acordo com o tipo ou categoria 
-        
-        
-        */
+        /*Area para cria os objetos de acordo com o tipo ou categoria*/
+       
    }
 
 //---------Saida do Programa----------//
