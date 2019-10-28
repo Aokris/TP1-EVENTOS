@@ -101,6 +101,7 @@ int main(){
     vector<Show> show;
     vector<Boate> boate;
     vector<TeatroFantoche> fantoche;
+    linha.clear();
 
 /* ---------- Váriaveis Auxiliares - EVENTOS ---------- */
     int IdEven;
