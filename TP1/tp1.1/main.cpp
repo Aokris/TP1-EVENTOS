@@ -73,22 +73,22 @@ int main(){
         // Inserindo usuário no vector correspondente à sua categoria
         if(categoria == "crianca"){
             // Armazenando o ID do responsável pela kid
-            depend[k] = stoi(linha[i])
+            depend[k] = stoi(linha[i]);
             i++;
 
             qcria++;
-            Crianca c(id,categoria,nome,idad[j],saldo,depend[k]);
+            Crianca c(id, categoria, nome, idad[j], saldo, depend[k]);
             crianca.push_back(c);
             k++;
 
         } else if(categoria == "adulto"){
             qadult++;
-            Adulto a(id,categoria,nome,idad[j],saldo);
+            Adulto a(id, categoria, nome, idad[j], saldo);
             adulto.push_back(a);
 
         } else if(categoria == "idoso"){
             qidos++;
-            Idoso ido(id,categoria,nome,idad[j],saldo);
+            Idoso ido(id, categoria, nome, idad[j], saldo);
             idoso.push_back(ido);
 
         }                
