@@ -15,7 +15,7 @@ Grupo:
 #include "funcoes.h"
 
 int main(){
-    int j=0,aux=0,k=0,i=0,tam = 0;//variaveis auxiliares
+    int j=0, aux=0, k=0, i=0, tam = 0;//variaveis auxiliares
 
     int *depend = new int;//vetor de id dependentes
     depend[0] = -1; // usado para caso extremo de nenhum dependente
@@ -70,15 +70,14 @@ int main(){
        
         i++;
 
-        if(categoria == "crianca"){//se criança pega o dependente
-            depend[k] = stoi(linha[i]);//achar outra forma de somar o numero maximo de dependetes pois queremos imprimir o numero maximo por adulto
-            
-            i++;
-        }
-
+        // Inserindo usuário no vector correspondente à sua categoria
         if(categoria == "crianca"){
+            // Armazenando o ID do responsável pela kid
+            depend[k] = stoi(linha[i])
+            i++;
+
             qcria++;
-            Crianca c (id,categoria,nome,idad[j],saldo,depend[k]);
+            Crianca c(id,categoria,nome,idad[j],saldo,depend[k]);
             crianca.push_back(c);
             k++;
 
@@ -121,13 +120,13 @@ int main(){
     cout << endl;
 
 //   0.3 - Número mínimo, médio e máximo de dependentes por adulto
-    if (depend[0] == -1){
+    if(depend[0] == -1){ // Atalho pro caso extremo de nenhum dependente
         cout << "Número de dependentes:" << endl;
         cout << "Minima: "<< 0 << endl;
         cout << "Máxima: "<< 0 << endl;
         cout << "Média: "<< 0 << endl << endl;
-    }else{
-        NumeroDependentes(depend,k);
+    } else{
+        NumeroDependentes(depend, k);
     }
 
 //   0.4 - Lista de dependentes por adulto

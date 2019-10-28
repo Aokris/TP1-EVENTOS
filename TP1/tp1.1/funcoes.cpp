@@ -70,13 +70,13 @@ void NumeroDependentes (int *depend, int qp){
         } 
     }*/
 
-    for(int i = 0; i<max;i++){
+    for(int i = 0; i < max; i++){
         numdep[depend[i]]++;
     }
     
     it = numdep.begin();
     maior = it->second;
-    cout<<maior;
+    cout << maior;
 
     if(qp == 0){
         menor = 0;
@@ -86,7 +86,7 @@ void NumeroDependentes (int *depend, int qp){
         cout<<menor;
     }
 
-    for(it = numdep.begin; it!=numdep.end();it++){
+    for(it = numdep.begin(); it != numdep.end(); it++){
         soma = soma + it->second;
     }
     
