@@ -19,8 +19,8 @@
 
 using namespace std;
 
-std::vector<std::string> splitLine(std::string line, char sep);
-void readCsv( std::vector<std::vector<std::string>> &resutlCsv, std::string nameFile, char sep);
+std::vector<std::string> splitLine(std::string line, char sep, int &cont);
+std::vector<int> readCsv( std::vector<std::vector<std::string>> &resutlCsv, std::string nameFile, char sep);
 
 void IdadeDosUsuarios(int *idad, int max);
 

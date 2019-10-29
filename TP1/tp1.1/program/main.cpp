@@ -23,7 +23,6 @@ int main(){
 
     int j = 0, k = 0, x = 0, n = 0, tam = 0; //variaveis auxiliares
     unsigned int i = 0 ;
-    int *qlinhas = new int[1000];
 
     int *depend = new int[1000];                //vetor de id dependentes
     depend[0] = -1;                       // usado para caso extremo de nenhum dependente
@@ -38,6 +37,7 @@ int main(){
     vector<vector<string>> linha2;    //iniciar o vetor da linha
     vector<Crianca> crianca; //iniciar o vetor de crianças
     vector<Crianca>::iterator itc;
+    vector<int> contCol;
 
     vector<Adulto> adulto; //iniciar o vetor de adultos
     vector<Adulto>::iterator ita;
@@ -105,8 +105,7 @@ int main(){
         }        
     }
 
-    readCsv(linha2,"Entrada_eventos.csv",';'); //le o arquivo e coloca na variavel linha
-    
+    contCol = readCsv(linha2,"Entrada_eventos.csv",';'); //le o arquivo e coloca na variavel linha    
 
     for (i = 0; i< linha2.size();i++){
         j = 0;
@@ -132,7 +131,7 @@ int main(){
         j++;
         x++;
 
-        /*for (int k = 0; k < qtipoEven; k++){
+        for (int k = 0; k < qtipoEven; k++){
             ingEven[k] = atoi (linha2[i][j].c_str());
             j++;
             x++;
@@ -142,17 +141,17 @@ int main(){
             x++;
         }
         
-        for (int k = 0; k < qlinhas[n] - x; k++){
+        for (int k = 0; k < contCol[i] - x; k++){
             horarios[k] = atoi (linha2[i][j].c_str());
             j++;
-            n++;
-        }*/
+        }
+
         x = 0;
         // Area para cria os objetos de acordo com o tipo ou categoria
     }
 
     //---------Saida do Programa----------//
-    /*cout << "\nNúmero de usuários:" << endl;
+    cout << "\nNúmero de usuários:" << endl;
     cout << "Crianças: " << qcria << endl;
     cout << "Adultos: " << qadult << endl;
     cout << "Idosos: " << qidos << endl
@@ -209,8 +208,7 @@ int main(){
     cout << "Evento com maior cota para idoso:" << endl;
 
     //   1.4 - Número total de bilhetes de cada valor
-    cout << "Número de ingressos por preço:" << endl;*/ 
-    delete [] qlinhas ;
+    cout << "Número de ingressos por preço:" << endl;
     delete [] depend ;
     delete [] idad ;
     delete [] ingEven ;
