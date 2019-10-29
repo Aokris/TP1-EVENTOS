@@ -113,7 +113,7 @@ int main(){
     string subcategEven;
     string nomeEven;
     int IdDono = 0;
-    int qtipoEven = 0;
+    int NumTipos = 0;
     int *ingEven = new int[1000];
     double *ValorEven = new double[1000];
     int *horarios = new int[1000];
@@ -153,7 +153,7 @@ int main(){
         j++;
         x++;
 
-        for (int k = 0; k < qtipoEven; k++){
+        for (int k = 0; k < NumTipos; k++){
             ingEven[k] = atoi(linha2[i][j].c_str()); // Quantidade de ingressos do tipo k
             j++;
             x++;
