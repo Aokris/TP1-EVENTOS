@@ -101,9 +101,17 @@ int main(){
 
 /* ---------- Criação de Objetos - EVENTOS ---------- */
     vector<Cinema> cinema;
+    vector<Cinema>::iterator itcine;
+
     vector<Show> show;
+    vector<Show>::iterator itshow;
+
     vector<Boate> boate;
+    vector<Boate>::iterator itboate;
+
     vector<TeatroFantoche> fantoche;
+    vector<TeatroFantoche> itfan;
+
     vector<vector<string>> linha2; // Inicializando o vetor da linha de eventos
 
 /* ---------- Váriaveis Auxiliares - EVENTOS ---------- */
@@ -282,8 +290,20 @@ int main(){
 //   1.2 - Número de eventos vendidos por cada usuário
     std::cout << "Número de eventos que o usuário possui:" << endl;
 
+
 //   1.3 - Nome e ID do evento com a maior cota para idosos
     std::cout << "Evento com maior cota para idoso:" << endl;
+    for(itshow = show.begin(); itshow < show.end(); itshow++){
+        if(itshow->get_id() == idMaiorQuota){
+                std::cout << itshow->get_nome() << " (ID: " << itshow->get_id() << "): " << "maiorQuota" << endl;
+        }
+    }
+    for(itboate = boate.begin(); itboate < boate.end(); itboate++){
+        if(itboate->get_id() == idMaiorQuota){
+                std::cout << itboate->get_nome() << " (ID: " << itboate->get_id() << "): " << "maiorQuota" << endl;
+        }
+    }
+
 
 //   1.4 - Número total de bilhetes de cada valor
     std::cout << "Número de ingressos por preço:" << endl;

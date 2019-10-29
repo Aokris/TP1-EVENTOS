@@ -13,8 +13,9 @@ class Evento{
         int *_capacidade;
         int *_precos;
     
-    protected:
+    public:
         Evento(int id, string nome, int id_dono, int &capacidade, int &precos);
-
+        int get_id();
+        string get_nome();
 };
 #endif
