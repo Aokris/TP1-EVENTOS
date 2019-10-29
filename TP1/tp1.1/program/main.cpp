@@ -58,7 +58,7 @@ int main(){
     string file_usuarios;
     std::cout << "Digite o nome do arquivo de USUARIOS que deseja abrir: ";
     std::cin >> file_usuarios;
-    readCsv(linha, file_usuarios,';'); // Inicializando entrada de usuários
+    readCsv(linha, file_usuarios,','); // Inicializando entrada de usuários
 
     // Processando cada linha lida no arquivo
     for (i = 0; i < linha.size(); i++){
@@ -146,12 +146,12 @@ int main(){
     std::cout << "Digite o nome do arquivo de EVENTOS que voce quer abrir: ";
     std::cin >> file_eventos;
 
-    contCol = readCsv(linha2, file_eventos,';'); // Inicializando entrada de eventos
+    contCol = readCsv(linha2, file_eventos,','); // Inicializando entrada de eventos
 
     for (i = 0; i < linha2.size(); i++){
         j = 0;
         //Capturando os valores para passagem de parametros
-        IdEven = stoi(linha2[i][j]);
+        IdEven = atoi(linha2[i][j].c_str());
         j++;
         x++;
         categoriaEven = linha2[i][j];
@@ -168,7 +168,7 @@ int main(){
         nomeEven = linha2[i][j];
         j++;
         x++;
-        IdDono[p] == stoi(linha2[i][j]);
+        IdDono[p] == atoi(linha2[i][j].c_str());
         j++;
         x++;
         p++;
@@ -189,37 +189,32 @@ int main(){
             precos[ValorEven[k]] += ingEven[k];
         }
         
-        for (int k = 0; k < contCol[i] - x; k++){
-            horarios[k] = atoi (linha2[i][j].c_str());
-            j++;
-        }
-
-        x = 0;
-
         // Se o evento não for do tipo Adulto, a leitura dos horários é realizada
-        if(categoriaEven != "adulto"){
-            for (int k = 0; k < contCol[i] - x; k++){
-                horarios[k] = stoi(linha2[i][j]);
-                j++;
-            }
-            x = 0;
-        }
 
         // Tratando os objetos
         if(categoriaEven == "infantil"){
+            for (int k = 0; k < linha2[i].size() - x; k++){
+                horarios[k] = atoi(linha2[i][j].c_str());
+                j++;
+            }
             qFanto++;
             TeatroFantoche fan (horarios, IdEven, nomeEven, IdDono[p], ingEven, ValorEven);
             fantoche.push_back(fan);
         } else if(categoriaEven == "cinema"){
+            for (int k = 0; k < linha2[i].size()-1; k++){
+                horarios[k] = atoi(linha2[i][j].c_str());
+                j++;
+            }
+
             qCine++;
 
-            duracao = stoi(linha[i][j]); // Obtendo a duracao do cinema
+            duracao = atoi(linha2[i][j].c_str()); // Obtendo a duracao do cinema
             j++;
 
             Cinema cine(IdEven, nomeEven, IdDono[p], ingEven, ValorEven, horarios, duracao);
             cinema.push_back(cine);
         } else if(categoriaEven == "adulto"){
-            quotaIdoso = stoi(linha2[i][j]); // Obtendo a quota para idosos do evento
+            quotaIdoso = atoi(linha2[i][j].c_str()); // Obtendo a quota para idosos do evento
             j++;
 
             if(quotaIdoso > maiorQuota){ // Atalho para obter o evento de maior quota
@@ -229,15 +224,15 @@ int main(){
 
             if(subcategEven == "boate"){
                 qBoate++;
-                horaIni = stoi(linha2[i][j]); // Obtendo horario de inicio da boate
+                horaIni = atoi(linha2[i][j].c_str());// Obtendo horario de inicio da boate
                 j++;
-                horaFim = stoi(linha2[i][j]); // Obtendo horario de fim da boate
+                horaFim = atoi(linha2[i][j].c_str());// Obtendo horario de fim da boate
                 j++;
                 Boate boa(quotaIdoso, horaIni, horaFim, IdEven, nomeEven, IdDono[p], ingEven, ValorEven);
                 boate.push_back(boa);
             } else if(subcategEven == "show"){
                 qShow++;
-                abertura = stoi(linha2[i][j]); // Obtendo horario de abertura do show 
+                abertura = atoi(linha2[i][j].c_str());// Obtendo horario de abertura do show 
                 j++;
                 int w = 0;
                 for(; j <= linha2[i].size(); j++){
@@ -248,6 +243,8 @@ int main(){
                 show.push_back(sho);
             }
         }
+        
+        x = 0;
     }
 
 /* ---------- Saída do Programa ---------- */
