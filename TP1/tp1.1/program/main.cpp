@@ -22,6 +22,7 @@ using namespace std;
 int main(){
 
     int j = 0, k = 0, x = 0, n = 0, tam = 0; //variaveis auxiliares
+    int sizeUsuarios = 0;
     unsigned int i = 0 ;
 
     int *depend = new int[1000];                //vetor de id dependentes
@@ -105,6 +106,8 @@ int main(){
         }        
     }
 
+    sizeUsuarios = linha.size();
+
     contCol = readCsv(linha2,"Entrada_eventos.csv",';'); //le o arquivo e coloca na variavel linha    
 
     for (i = 0; i< linha2.size();i++){
@@ -158,11 +161,11 @@ int main(){
          << endl;
 
     //   0.2 - Idade mínima, máxima e média para todos os usuários
-    IdadeDosUsuarios(idad, j);
+    IdadeDosUsuarios(idad, sizeUsuarios);
     cout << endl;
 
     //   0.3 - Número mínimo, médio e máximo de dependentes por adulto
-    IdadeDosUsuarios(idad, j);
+    IdadeDosUsuarios(idad, sizeUsuarios);
     if (depend[0] == -1){
         cout << "\nNúmero de dependentes:" << endl;
         cout << "Minima: " << 0 << endl;

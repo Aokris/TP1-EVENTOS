@@ -46,14 +46,14 @@ std::vector<int> readCsv( std::vector<std::vector<std::string>> &resutlCsv, std:
 //2 . Função que imprime a idade dos usuarios segundo o especificado
 void IdadeDosUsuarios(int *idad, int max){
     int aux = 0, soma = 0;
-    float resul;
+    float resul = 0.0;
 
     for (int i = 0; i < max; i++) { 
         soma += idad[i];
     }
 
     for (int i = 0; i < max; i++) { 
-        for (int j = 0; j < max; j++){ 
+        for (int j = i; j < max; j++){ 
             if (idad[i] < idad[j]){ 
                 aux = idad[i];
                 idad[i] = idad[j];
