@@ -5,10 +5,10 @@
 #include "eventoinfantil.h"
 
 class TeatroFantoche : public  EventoInfantil{
-    private:
-        int *_horarios;
     protected:
-        TeatroFantoche(int &horarios, int id, string nome, int id_dono, int &capacidade, int &precos);
+        int *_horarios;
+    public:
+        TeatroFantoche(int *horarios, int id, string nome, int id_dono, int *capacidade, int *precos);
 };
 
 #endif

@@ -128,7 +128,7 @@ int main(){
     int *IdDono = new int[1000];
     int NumTipos = 0;
     int *ingEven = new int[1000];
-    double *ValorEven = new double[1000];
+    int *ValorEven = new int[1000];
     int *horarios = new int[1000];
     int quotaIdoso = 0;
     int duracao = 0;
@@ -208,7 +208,7 @@ int main(){
         // Tratando os objetos
         if(categoriaEven == "infantil"){
             qFanto++;
-            TeatroFantoche fan(&horarios, IdEven, nomeEven, IdDono, ingEven, ValorEven);
+            TeatroFantoche fan (horarios, IdEven, nomeEven, IdDono[p], ingEven, ValorEven);
             fantoche.push_back(fan);
         } else if(categoriaEven == "cinema"){
             qCine++;
@@ -216,7 +216,7 @@ int main(){
             duracao = stoi(linha[i][j]); // Obtendo a duracao do cinema
             j++;
 
-            Cinema cine(IdEven, nomeEven, IdDono, ingEven, ValorEven, &horarios, duracao);
+            Cinema cine(IdEven, nomeEven, IdDono[p], ingEven, ValorEven, horarios, duracao);
             cinema.push_back(cine);
         } else if(categoriaEven == "adulto"){
             quotaIdoso = stoi(linha2[i][j]); // Obtendo a quota para idosos do evento
@@ -233,7 +233,7 @@ int main(){
                 j++;
                 horaFim = stoi(linha2[i][j]); // Obtendo horario de fim da boate
                 j++;
-                Boate boa(quotaIdoso, horaIni, horaFim, IdEven, nomeEven, IdDono, ingEven, ValorEven);
+                Boate boa(quotaIdoso, horaIni, horaFim, IdEven, nomeEven, IdDono[p], ingEven, ValorEven);
                 boate.push_back(boa);
             } else if(subcategEven == "show"){
                 qShow++;
@@ -244,7 +244,7 @@ int main(){
                     artistas[w] = linha2[i][j]; // Obtendo listagem dos artistas que apresentarão no show
                     w++;
                 }
-                Show sho(quotaIdoso, abertura, artistas, IdEven, nomeEven, IdDono, ingEven, ValorEven);
+                Show sho(quotaIdoso, abertura, artistas, IdEven, nomeEven, IdDono[p], ingEven, ValorEven);
                 show.push_back(sho);
             }
         }
