@@ -1,6 +1,6 @@
 #include "funcoes.h"
 
-std::vector<std::string> splitLine(std::string line, char sep){
+std::vector<std::string> splitLine(std::string line, char sep, int &cont){
 
     // Convert string in stream string
     std::istringstream split(line);
@@ -11,28 +11,36 @@ std::vector<std::string> splitLine(std::string line, char sep){
     // Split line for character separator
     for (std::string each; std::getline(split, each,sep); lineVector.push_back(each));
 
+    // Cont number of columns
+    cont = lineVector.size();
+
     return lineVector;
 }
 
 
 // Function for read file csv
-void readCsv( std::vector<std::vector<std::string>> &resutlCsv, std::string nameFile, char sep){
+std::vector<int> readCsv( std::vector<std::vector<std::string>> &resutlCsv, std::string nameFile, char sep){
 
     std::string lineString;
     std::ifstream myfile(nameFile);
+    std::vector<int> contCol;
+    int cont;
 
     // Read file if correct name
     if (myfile.is_open()){
 
         // Process file line by line
-        while (getline(myfile, lineString))
-  
-            resutlCsv.push_back(splitLine(lineString,sep));
-
+        while (getline(myfile, lineString)){
+            cont = 0;
+            resutlCsv.push_back(splitLine(lineString,sep,cont));
+            contCol.push_back(cont);
+        }
         myfile.close();
 
     }else
         std::cout << "Unable to open file";
+
+    return contCol;
 }
 
 //2 . Função que imprime a idade dos usuarios segundo o especificado
