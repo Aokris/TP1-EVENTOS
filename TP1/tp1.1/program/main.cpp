@@ -126,6 +126,10 @@ int main(){
         j++;
         x++;
 
+        IdDono = stoi(linha2[i][j]);
+        j++;
+        x++;
+
         nomeEven = linha2[i][j];
         j++;
         x++;
