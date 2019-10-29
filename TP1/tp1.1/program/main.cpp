@@ -21,6 +21,21 @@ using namespace std;
 
 int main(){
 
+/* ---------- Criação de Objetos - USUÁRIOS ---------- */
+    vector<vector<string>> linha;    //iniciar o vetor da linha
+    vector<string>::iterator lin; //iterator para linha
+
+    vector<Crianca> crianca; //iniciar o vetor de crianças
+    vector<Crianca>::iterator itc;
+    vector<int> contCol;
+
+    vector<Adulto> adulto; //iniciar o vetor de adultos
+    vector<Adulto>::iterator ita;
+
+    vector<Idoso> idoso; //iniciar o vetor de idosos
+    vector<Idoso>::iterator itd;
+
+/* ---------- Váriaveis Auxiliares - USUÁRIOS ---------- */
     int j = 0, k = 0, x = 0, n = 0, tam = 0; //variaveis auxiliares
     int sizeUsuarios = 0;
     unsigned int i = 0 ;
@@ -33,43 +48,16 @@ int main(){
     float saldo = 0.0;
     string nome, categoria;
 
-    //-------Dados para criação de objetos(Usuários)-----------//
-    vector<vector<string>> linha;    //iniciar o vetor da linha
-    vector<vector<string>> linha2;    //iniciar o vetor da linha
-    vector<Crianca> crianca; //iniciar o vetor de crianças
-    vector<Crianca>::iterator itc;
-    vector<int> contCol;
+/* ---------- Tratando Entrada - USUÁRIOS ---------- */
+    // FALTA IMPLEMENTAR A LEITURA CORRETAMENTE
+    // OU SEJA, PEDIR PRA LER O NOME DO ARQUIVO QUE VAI SER ABERTO
+    // IMPLEMENTAR DEPOIS QUE TIVERMOS TERMINADO, COISA SIMPLES E RAPIDA
+    // USAR cin pra pedir o nome do arquivo pra ser aberto
 
-    vector<Adulto> adulto; //iniciar o vetor de adultos
-    vector<Adulto>::iterator ita;
-    vector<Idoso> idoso; //iniciar o vetor de idosos
-    vector<Idoso>::iterator itd;
-    vector<string>::iterator lin; //iterator para linha
-    fstream file, file1;          //Cria a variavel arquivo
+    readCsv(linha,"Usuarios.csv",';'); // Inicializando entrada de usuários
 
-    //------------Variaveis Eventos ---------------//
-    int IdEven = 0;
-    int aux = 0;
-    string categoriaEven;
-    string tipoEven;
-    string nomeEven;
-    int IdDono = 0;
-    int qtipoEven = 0;
-    int *ingEven = new int[1000];
-    double *ValorEven = new double[1000];
-    int *horarios = new int[1000];
-
-    //------Dados para criação de objetos(Eventos)-----------//
-
-    vector<Cinema> cinema;
-    vector<Show> show;
-    vector<Boate> boate;
-    vector<TeatroFantoche> fantoche;
-
-    readCsv(linha,"Usuarios.csv",';'); //le o arquivo e coloca na variavel linha
-
-    // Process line
-    for (i = 0; i< linha.size();i++){
+    // Processando cada linha lida no arquivo
+    for (i = 0; i < linha.size(); i++){
         j = 0;
 
         id = atoi (linha[i][j].c_str()); //armazena a id de cada usuario
@@ -87,19 +75,21 @@ int main(){
         saldo = atof(linha[i][j].c_str());//saldo bancario
         j++;
 
-        if (categoria == "crianca"){//se criança pega o dependente
-            depend[k] = atoi (linha[i][j].c_str()); //achar outra forma de somar o numero maximo de dependetes pois queremos imprimir o numero maximo por adulto
+        // Armazenando usuários no vector de sua categoria correspondente
+        if(categoria == "crianca"){
+            // Armazenando ID do responsável pela criança no vetor de dependentes
+            depend[k] = atoi(linha[i][j].c_str());
             j++;
-        }if (categoria == "crianca"){
+
             qcria++;
             Crianca c(id, categoria, nome, idad[j], saldo, depend[k]);
             crianca.push_back(c);
             k++;
-        }else if (categoria == "adulto"){
+        } else if (categoria == "adulto"){
             qadult++;
             Adulto a(id, categoria, nome, idad[j], saldo);
             adulto.push_back(a);
-        }else if (categoria == "idoso"){
+        } else if (categoria == "idoso"){
             qidos++;
             Idoso ido(id, categoria, nome, idad[j], saldo);
             idoso.push_back(ido);
@@ -108,42 +98,67 @@ int main(){
 
     sizeUsuarios = linha.size();
 
-    contCol = readCsv(linha2,"Entrada_eventos.csv",';'); //le o arquivo e coloca na variavel linha    
 
-    for (i = 0; i< linha2.size();i++){
+/* ---------- Criação de Objetos - EVENTOS ---------- */
+    vector<Cinema> cinema;
+    vector<Show> show;
+    vector<Boate> boate;
+    vector<TeatroFantoche> fantoche;
+    vector<vector<string>> linha2; // Inicializando o vetor da linha de eventos
+
+/* ---------- Váriaveis Auxiliares - EVENTOS ---------- */
+    int IdEven = 0;
+    int aux = 0;
+    string categoriaEven;
+    string subcategEven;
+    string nomeEven;
+    int IdDono = 0;
+    int qtipoEven = 0;
+    int *ingEven = new int[1000];
+    double *ValorEven = new double[1000];
+    int *horarios = new int[1000];
+    int quotaIdoso;
+    // Contadores
+    int qBoate = 0, qShow = 0, qCine = 0, qFanto = 0;
+
+/* ---------- Tratando Entrada - EVENTOS ---------- */
+    // IMPLEMENTAR ENTRADA CORRETAMENTE COM O cin
+
+    contCol = readCsv(linha2,"Entrada_eventos.csv",';'); // Inicializando entrada de eventos
+
+    for (i = 0; i < linha2.size(); i++){
         j = 0;
-        
-        //Capturação dos valores para passagem de parametros
+        //Capturando os valores para passagem de parametros
         IdEven = stoi(linha2[i][j]);
         j++;
         x++;
-
         categoriaEven = linha2[i][j];
         j++;
         x++;
 
-        tipoEven = linha2[i][j];
-        j++;
-        x++;
-
-        IdDono = stoi(linha2[i][j]);
-        j++;
-        x++;
+        // Se o evento for do tipo cinema, ele não possui subcategoria
+        if(categoriaEven != "cinema"){
+            subcategEven = linha[i][j];
+            j++;
+            x++;
+        }
 
         nomeEven = linha2[i][j];
         j++;
         x++;
-
-        qtipoEven = atoi (linha2[i][j].c_str());
+        IdDono = stoi(linha2[i][j]);
+        j++;
+        x++;
+        NumTipos = atoi(linha2[i][j].c_str());  // Nº de tipos de ingressos diferentes
         j++;
         x++;
 
         for (int k = 0; k < qtipoEven; k++){
-            ingEven[k] = atoi (linha2[i][j].c_str());
+            ingEven[k] = atoi(linha2[i][j].c_str()); // Quantidade de ingressos do tipo k
             j++;
             x++;
 
-            ValorEven[k] = atof(linha2[i][j].c_str());
+            ValorEven[k] = atof(linha2[i][j].c_str()); // Valor do ingresso do tipo k
             j++;
             x++;
         }
@@ -154,68 +169,95 @@ int main(){
         }
 
         x = 0;
-        // Area para cria os objetos de acordo com o tipo ou categoria
-    }
 
-    //---------Saida do Programa----------//
-    cout << "\nNúmero de usuários:" << endl;
-    cout << "Crianças: " << qcria << endl;
-    cout << "Adultos: " << qadult << endl;
-    cout << "Idosos: " << qidos << endl
-         << endl;
-
-    //   0.2 - Idade mínima, máxima e média para todos os usuários
-    IdadeDosUsuarios(idad, sizeUsuarios);
-    cout << endl;
-
-    //   0.3 - Número mínimo, médio e máximo de dependentes por adulto
-    IdadeDosUsuarios(idad, sizeUsuarios);
-    if (depend[0] == -1){
-        cout << "\nNúmero de dependentes:" << endl;
-        cout << "Minima: " << 0 << endl;
-        cout << "Máxima: " << 0 << endl;
-        cout << "Média: " << 0 << endl;
-    }else{
-        if (qcria == (qcria + qadult + qidos)){
-            NumeroDependentes(depend, qcria, qadult + qidos);
-        }else{
-            NumeroDependentes(depend, 0, qidos + qadult);
+        // Se o evento não for do tipo Adulto, a leitura dos horários é realizada
+        if(categoriaEven != "adulto"){
+            for (int k = 0; k < contCol[i] - x; k++){
+                horarios[k] = stoi(linha[i][j]);
+                j++;
+            }
+            x = 0;
         }
-    }
-    
-    //   0.4 - Lista de dependentes por adulto
-    cout << "Dependentes:" << endl;
-    for(itc = crianca.begin(); itc<crianca.end();itc++){
-        for(ita = adulto.begin(); ita!=adulto.end();ita++){
-            if(itc->get_id_responsavel() == ita->get_id()){
-                cout<<ita->get_nome()<<" (ID: "<<ita->get_id()<<"): "<<itc->get_nome()<<" (ID: "<<itc->get_id_responsavel()<<"): "<<endl;
+
+        // Tratando os objetos
+        if(categoriaEven == "infantil"){
+            qFanto++;
+        } else if(categoriaEven == "cinema"){
+            qCine++;
+        } else if(categoriaEven == "adulto"){
+            quotaIdoso = stoi(linha[i][j]);
+            j++;
+
+
+            if(subcategEven == "boate"){
+                qBoate++;
+            } else if(subcategEven == "show"){
+                qShow++;
             }
         }
     }
+
+/* ---------- Saída do Programa ---------- */
+
+// 0 - USUÁRIOS
+//   0.1 - Número de crianças, adultos e idosos
+    std::cout << endl << "Número de usuários:" << endl;
+    std::cout << "Crianças: " << qcria << endl;
+    std::cout << "Adultos: " << qadult << endl;
+    std::cout << "Idosos: " << qidos << endl << endl;
+
+//   0.2 - Idade mínima, máxima e média para todos os usuários
+    IdadeDosUsuarios(idad, j);
+
+//   0.3 - Número mínimo, médio e máximo de dependentes por adulto
+    if (depend[0] == -1){ // Atalho para o caso onde não há nenhum dependente na entrada
+        std::cout << "Número de dependentes:" << endl;
+        std::cout << "Minima: " << 0 << endl;
+        std::cout << "Máxima: " << 0 << endl;
+        std::cout << "Média: " << 0 << endl;
+    } else {
+        NumeroDependentes(depend, qcria, qadult + qidos);
+    }
+
+//   0.4 - Lista de dependentes por adulto
+    std::cout << "Dependentes:" << endl;
+    for(itc = crianca.begin(); itc < crianca.end();itc++){
+        for(ita = adulto.begin(); ita != adulto.end(); ita++){
+            if(itc->get_id_responsavel() == ita->get_id()){
+                std::cout << ita->get_nome() << " (ID: " << ita->get_id() << "): " << itc->get_nome() << " (ID: " << itc->get_id_responsavel() << "): " << endl;
+        }
+    }}
 
     for(itc = crianca.begin(); itc < crianca.end();itc++){
         for(itd = idoso.begin(); itd != idoso.end(); itd++){
             if(itc->get_id_responsavel() == itd->get_id()){
-                cout<<itd->get_nome()<<" (ID: "<<itd->get_id()<<"): "<<itc->get_nome()<<" (ID: "<<itc->get_id_responsavel()<<"): "<<endl;
-            }
+                std::cout << itd->get_nome() << " (ID: " << itd->get_id() << "): " << itc->get_nome() << " (ID: " << itc->get_id_responsavel() << "): " << endl;
         }
-    }
-    
-    // 1 - EVENTOS
-    //   1.1 - Número de eventos de cada tipo
-    cout << "Número de eventos:" << endl;
-    cout << "Adultos:" << endl;
-    cout << "Livres:" << endl;
-    cout << "Infantis:" << endl << endl;
+    }}
 
-    //   1.2 - Número de eventos vendidos por cada usuário
-    cout << "Número de eventos que o usuário possui:" << endl;
+// 1 - EVENTOS
+//   1.1 - Número de eventos de cada tipo
+    std::cout << endl << "Número de eventos:" << endl;
+    std::cout << "Adultos:" << endl;
+    std::cout << "\tBoate: " << qBoate << endl;
+    std::cout << "\tShow: " << qShow << endl;
+    std::cout << "Livres:" << endl;
+    std::cout << "\tCinema: " << qCine << endl;
+    std::cout << "Infantis:" << endl;
+    std::cout << "\tTeatro de Fantoches: " << qFanto << endl << endl;
 
-    //   1.3 - Nome e ID do evento com a maior cota para idosos
-    cout << "Evento com maior cota para idoso:" << endl;
+//   1.2 - Número de eventos vendidos por cada usuário
+    std::cout << "Número de eventos que o usuário possui:" << endl;
 
-    //   1.4 - Número total de bilhetes de cada valor
-    cout << "Número de ingressos por preço:" << endl;
+//   1.3 - Nome e ID do evento com a maior cota para idosos
+    std::cout << "Evento com maior cota para idoso:" << endl;
+
+//   1.4 - Número total de bilhetes de cada valor
+    std::cout << "Número de ingressos por preço:" << endl;
+
+
+
+
     delete [] depend ;
     delete [] idad ;
     delete [] ingEven ;
