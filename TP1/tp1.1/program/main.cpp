@@ -117,7 +117,12 @@ int main(){
     int *ingEven = new int[1000];
     double *ValorEven = new double[1000];
     int *horarios = new int[1000];
-    int quotaIdoso;
+    int quotaIdoso = 0;
+    int duracao = 0;
+    int horaIni = 0;
+    int horaFim = 0;
+    int abertura = 0;
+    string *artistas = new string[1000];
     // Contadores
     int qBoate = 0, qShow = 0, qCine = 0, qFanto = 0;
 
@@ -138,7 +143,7 @@ int main(){
 
         // Se o evento for do tipo cinema, ele não possui subcategoria
         if(categoriaEven != "cinema"){
-            subcategEven = linha[i][j];
+            subcategEven = linha2[i][j];
             j++;
             x++;
         }
@@ -173,7 +178,7 @@ int main(){
         // Se o evento não for do tipo Adulto, a leitura dos horários é realizada
         if(categoriaEven != "adulto"){
             for (int k = 0; k < contCol[i] - x; k++){
-                horarios[k] = stoi(linha[i][j]);
+                horarios[k] = stoi(linha2[i][j]);
                 j++;
             }
             x = 0;
@@ -182,17 +187,35 @@ int main(){
         // Tratando os objetos
         if(categoriaEven == "infantil"){
             qFanto++;
+            TeatroFantoche fan(&horarios, IdEven, nomeEven, IdDono, ingEven, ValorEven);
         } else if(categoriaEven == "cinema"){
             qCine++;
-        } else if(categoriaEven == "adulto"){
-            quotaIdoso = stoi(linha[i][j]);
+
+            duracao = stoi(linha[i][j]); // Obtendo a duracao do cinema
             j++;
 
+            Cinema cine(IdEven, nomeEven, IdDono, ingEven, ValorEven, &horarios, duracao);
+        } else if(categoriaEven == "adulto"){
+            quotaIdoso = stoi(linha2[i][j]); // Obtendo a quota para idosos do evento
+            j++;
 
             if(subcategEven == "boate"){
                 qBoate++;
+                horaIni = stoi(linha2[i][j]); // Obtendo horario de inicio da boate
+                j++;
+                horaFim = stoi(linha2[i][j]); // Obtendo horario de fim da boate
+                j++;
+                Boate boa(quotaIdoso, horaIni, horaFim, IdEven, nomeEven, IdDono, ingEven, ValorEven);
             } else if(subcategEven == "show"){
                 qShow++;
+                abertura = stoi(linha2[i][j]); // Obtendo horario de abertura do show 
+                j++;
+                int w = 0;
+                for(; j <= linha2[i].size(); j++){
+                    artistas[w] = stoi(linha2[i][j]); // Obtendo listagem dos artistas que apresentarão no show
+                    w++;
+                }
+                Show sho(quotaIdoso, abertura, artistas, IdEven, nomeEven, IdDono, ingEven, ValorEven);
             }
         }
     }
