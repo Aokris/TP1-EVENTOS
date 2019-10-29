@@ -53,7 +53,11 @@ int main(){
     // OU SEJA, PEDIR PRA LER O NOME DO ARQUIVO QUE VAI SER ABERTO
     // IMPLEMENTAR DEPOIS QUE TIVERMOS TERMINADO, COISA SIMPLES E RAPIDA
     // USAR cin pra pedir o nome do arquivo pra ser aberto
-
+    std::cout << "Para ler o arquivo, digite o nome de cada arquivo correspondente a seguir, no formato 'arquivo.csv'." << endl;
+    std::cout << "O arquivo desejado preferencialmente deve se encontrar na mesma pasta do programa" << endl;
+    string file_usuarios;
+    std::cout << "Digite o nome do arquivo de USUARIOS que deseja abrir: ";
+    std::cin >> file_usuarios;
     readCsv(linha,"Usuarios.csv",';'); // Inicializando entrada de usuários
 
     // Processando cada linha lida no arquivo
@@ -120,7 +124,7 @@ int main(){
     string categoriaEven;
     string subcategEven;
     string nomeEven;
-    int IdDono = 0;
+    int *IdDono = new int[1000];
     int NumTipos = 0;
     int *ingEven = new int[1000];
     double *ValorEven = new double[1000];
@@ -135,8 +139,11 @@ int main(){
     int qBoate = 0, qShow = 0, qCine = 0, qFanto = 0;
     // Atalhos
     int maiorQuota = 0, idMaiorQuota = 0;
+    int p = 0;
 /* ---------- Tratando Entrada - EVENTOS ---------- */
-    // IMPLEMENTAR ENTRADA CORRETAMENTE COM O cin
+    string file_eventos;
+    std::cout << "Digite o nome do arquivo de EVENTOS que voce quer abrir: ";
+    std::cin >> file_eventos;
 
     contCol = readCsv(linha2,"Entrada_eventos.csv",';'); // Inicializando entrada de eventos
 
@@ -160,9 +167,10 @@ int main(){
         nomeEven = linha2[i][j];
         j++;
         x++;
-        IdDono = stoi(linha2[i][j]);
+        IdDono[p] == stoi(linha2[i][j]);
         j++;
         x++;
+        p++;
         NumTipos = atoi(linha2[i][j].c_str());  // Nº de tipos de ingressos diferentes
         j++;
         x++;
@@ -289,7 +297,21 @@ int main(){
 
 //   1.2 - Número de eventos vendidos por cada usuário
     std::cout << "Número de eventos que o usuário possui:" << endl;
+    //Criação de map para armazenar numero eventos por dono
+    map<int, int> dono;
+    map<int, int>::iterator it;
 
+    //Passagem para o Map
+    for(int i = 0; i < p; i++){
+        dono[IdDono[i]]++;
+    }
+     for(it = dono.begin(); it != dono.end(); it++){
+        for(ita = adulto.begin(); ita != adulto.end(); ita++){
+            if(it->first == ita->get_id()){
+                std::cout<<ita->get_nome()<<" (ID: "<<ita->get_id()<<"): "<<it->second<<endl;
+            }
+        }
+     }
 
 //   1.3 - Nome e ID do evento com a maior cota para idosos
     std::cout << "Evento com maior cota para idoso:" << endl;
