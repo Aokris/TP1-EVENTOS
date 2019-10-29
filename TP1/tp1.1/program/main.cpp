@@ -125,7 +125,8 @@ int main(){
     string *artistas = new string[1000];
     // Contadores
     int qBoate = 0, qShow = 0, qCine = 0, qFanto = 0;
-
+    // Atalhos
+    int maiorQuota = 0, idMaiorQuota = 0;
 /* ---------- Tratando Entrada - EVENTOS ---------- */
     // IMPLEMENTAR ENTRADA CORRETAMENTE COM O cin
 
@@ -188,6 +189,7 @@ int main(){
         if(categoriaEven == "infantil"){
             qFanto++;
             TeatroFantoche fan(&horarios, IdEven, nomeEven, IdDono, ingEven, ValorEven);
+            fantoche.push_back(fan);
         } else if(categoriaEven == "cinema"){
             qCine++;
 
@@ -195,9 +197,15 @@ int main(){
             j++;
 
             Cinema cine(IdEven, nomeEven, IdDono, ingEven, ValorEven, &horarios, duracao);
+            cinema.push_back(cine);
         } else if(categoriaEven == "adulto"){
             quotaIdoso = stoi(linha2[i][j]); // Obtendo a quota para idosos do evento
             j++;
+
+            if(quotaIdoso > maiorQuota){ // Atalho para obter o evento de maior quota
+                maiorQuota = quotaIdoso;
+                idMaiorQuota = IdEven;
+            }
 
             if(subcategEven == "boate"){
                 qBoate++;
@@ -206,6 +214,7 @@ int main(){
                 horaFim = stoi(linha2[i][j]); // Obtendo horario de fim da boate
                 j++;
                 Boate boa(quotaIdoso, horaIni, horaFim, IdEven, nomeEven, IdDono, ingEven, ValorEven);
+                boate.push_back(boa);
             } else if(subcategEven == "show"){
                 qShow++;
                 abertura = stoi(linha2[i][j]); // Obtendo horario de abertura do show 
@@ -216,6 +225,7 @@ int main(){
                     w++;
                 }
                 Show sho(quotaIdoso, abertura, artistas, IdEven, nomeEven, IdDono, ingEven, ValorEven);
+                show.push_back(sho);
             }
         }
     }
