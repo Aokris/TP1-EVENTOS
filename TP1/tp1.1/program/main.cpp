@@ -212,7 +212,7 @@ int main(){
                 j++;
                 int w = 0;
                 for(; j <= linha2[i].size(); j++){
-                    artistas[w] = stoi(linha2[i][j]); // Obtendo listagem dos artistas que apresentarão no show
+                    artistas[w] = linha2[i][j]; // Obtendo listagem dos artistas que apresentarão no show
                     w++;
                 }
                 Show sho(quotaIdoso, abertura, artistas, IdEven, nomeEven, IdDono, ingEven, ValorEven);
