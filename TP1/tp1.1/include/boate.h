@@ -10,7 +10,7 @@ class Boate : public  EventoAdulto{
     int _horaFim;
 
     protected:
-        Boate(int quota_idoso, int horaInicio, int horaFim, int id, string nome, int id_responsavel, int &capacidade, int &precos);
+        Boate(int quota_idoso, int horaInicio, int horaFim, int id, string nome, int id_dono, int &capacidade, int &precos);
 };
 
 #endif

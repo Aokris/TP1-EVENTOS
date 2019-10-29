@@ -8,7 +8,7 @@ class EventoAdulto : public  Evento{
     private:
     int _quota_idoso;
     protected:
-        EventoAdulto(int id, string nome, int id_responsavel, int &capacidade, int &precos, int quota_idoso);
+        EventoAdulto(int id, string nome, int id_dono, int &capacidade, int &precos, int quota_idoso);
 };
 
 #endif

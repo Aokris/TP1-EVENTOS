@@ -9,6 +9,7 @@ class Cinema : public  Evento{
         int *_horarios;
         int _duracao;
     protected:
-    Cinema(int id, string nome, int id_responsavel, int &capacidade, int &precos, int &horario, int duracao);
+        Cinema(int id, string nome, int id_dono, int &capacidade, int &precos, int &horario, int duracao);
 };
+
 #endif

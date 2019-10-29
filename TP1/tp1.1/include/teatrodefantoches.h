@@ -6,9 +6,9 @@
 
 class TeatroFantoche : public  EventoInfantil{
     private:
-    int *_horarios;
+        int *_horarios;
     protected:
-        TeatroFantoche(int &horarios,int id, string nome, int id_responsavel, int &capacidade, int &precos);
+        TeatroFantoche(int &horarios, int id, string nome, int id_dono, int &capacidade, int &precos);
 };
 
 #endif
