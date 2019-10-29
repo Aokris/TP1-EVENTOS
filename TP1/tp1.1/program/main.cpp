@@ -7,7 +7,7 @@ Sistema de gerenciamento de vendas de eventos e controle de usuários
 
 Grupo:
 - Bruno Flister Viana (2018048567)
-- Ruhann Carlos Pereira de Almeida (coloca a matrícula aqui)
+- Ruhann Carlos Pereira de Almeida (2018105501)
 - Vítor Gabriel Peixoto Pessoa (2018048451)
 
 */
@@ -54,11 +54,11 @@ int main(){
     // IMPLEMENTAR DEPOIS QUE TIVERMOS TERMINADO, COISA SIMPLES E RAPIDA
     // USAR cin pra pedir o nome do arquivo pra ser aberto
     std::cout << "Para ler o arquivo, digite o nome de cada arquivo correspondente a seguir, no formato 'arquivo.csv'." << endl;
-    std::cout << "O arquivo desejado preferencialmente deve se encontrar na mesma pasta do programa" << endl;
+    std::cout << "O arquivo desejado preferencialmente deve se encontrar na mesma pasta do programa e *deve* usar ; como separador" << endl;
     string file_usuarios;
     std::cout << "Digite o nome do arquivo de USUARIOS que deseja abrir: ";
     std::cin >> file_usuarios;
-    readCsv(linha,"Usuarios.csv",';'); // Inicializando entrada de usuários
+    readCsv(linha, file_usuarios,';'); // Inicializando entrada de usuários
 
     // Processando cada linha lida no arquivo
     for (i = 0; i < linha.size(); i++){
@@ -117,7 +117,8 @@ int main(){
     vector<TeatroFantoche> itfan;
 
     vector<vector<string>> linha2; // Inicializando o vetor da linha de eventos
-
+    map<double, int> precos;
+    map<double, int>::iterator itprecos;
 /* ---------- Váriaveis Auxiliares - EVENTOS ---------- */
     int IdEven = 0;
     int aux = 0;
@@ -145,7 +146,7 @@ int main(){
     std::cout << "Digite o nome do arquivo de EVENTOS que voce quer abrir: ";
     std::cin >> file_eventos;
 
-    contCol = readCsv(linha2,"Entrada_eventos.csv",';'); // Inicializando entrada de eventos
+    contCol = readCsv(linha2, file_eventos,';'); // Inicializando entrada de eventos
 
     for (i = 0; i < linha2.size(); i++){
         j = 0;
@@ -183,6 +184,9 @@ int main(){
             ValorEven[k] = atof(linha2[i][j].c_str()); // Valor do ingresso do tipo k
             j++;
             x++;
+
+            //Contando ingressos por preço
+            precos[ValorEven[k]] += ingEven[k];
         }
         
         for (int k = 0; k < contCol[i] - x; k++){
@@ -270,14 +274,14 @@ int main(){
 
 //   0.4 - Lista de dependentes por adulto
     std::cout << "Dependentes:" << endl;
-    for(itc = crianca.begin(); itc < crianca.end();itc++){
+    for(itc = crianca.begin(); itc != crianca.end();itc++){
         for(ita = adulto.begin(); ita != adulto.end(); ita++){
             if(itc->get_id_responsavel() == ita->get_id()){
                 std::cout << ita->get_nome() << " (ID: " << ita->get_id() << "): " << itc->get_nome() << " (ID: " << itc->get_id_responsavel() << "): " << endl;
         }
     }}
 
-    for(itc = crianca.begin(); itc < crianca.end();itc++){
+    for(itc = crianca.begin(); itc != crianca.end();itc++){
         for(itd = idoso.begin(); itd != idoso.end(); itd++){
             if(itc->get_id_responsavel() == itd->get_id()){
                 std::cout << itd->get_nome() << " (ID: " << itd->get_id() << "): " << itc->get_nome() << " (ID: " << itc->get_id_responsavel() << "): " << endl;
@@ -315,12 +319,12 @@ int main(){
 
 //   1.3 - Nome e ID do evento com a maior cota para idosos
     std::cout << "Evento com maior cota para idoso:" << endl;
-    for(itshow = show.begin(); itshow < show.end(); itshow++){
+    for(itshow = show.begin(); itshow != show.end(); itshow++){
         if(itshow->get_id() == idMaiorQuota){
                 std::cout << itshow->get_nome() << " (ID: " << itshow->get_id() << "): " << "maiorQuota" << endl;
         }
     }
-    for(itboate = boate.begin(); itboate < boate.end(); itboate++){
+    for(itboate = boate.begin(); itboate != boate.end(); itboate++){
         if(itboate->get_id() == idMaiorQuota){
                 std::cout << itboate->get_nome() << " (ID: " << itboate->get_id() << "): " << "maiorQuota" << endl;
         }
@@ -329,8 +333,9 @@ int main(){
 
 //   1.4 - Número total de bilhetes de cada valor
     std::cout << "Número de ingressos por preço:" << endl;
-
-
+    for(itprecos = precos.begin(); itprecos != precos.end(); itprecos++){
+        std::cout << "R$" << itprecos->first << ": " << itprecos->second << endl;
+    }
 
 
     delete [] depend ;
