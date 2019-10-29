@@ -21,7 +21,7 @@ using namespace std;
 
 int main(){
 
-    int j = 0, k = 0, x = 0, n = 0, tam = 0; //variaveis auxiliares
+    int j = 0, k = 0, x = 0, n = 0, p = 0, tam = 0; //variaveis auxiliares
     unsigned int i = 0 ;
 
     int *depend = new int[1000];                //vetor de id dependentes
@@ -52,7 +52,7 @@ int main(){
     string categoriaEven;
     string tipoEven;
     string nomeEven;
-    int IdDono = 0;
+    int *IdDono = new int;
     int qtipoEven = 0;
     int *ingEven = new int[1000];
     double *ValorEven = new double[1000];
@@ -123,9 +123,10 @@ int main(){
         j++;
         x++;
 
-        IdDono = stoi(linha2[i][j]);
+        IdDono[p] == stoi(linha2[i][j]);
         j++;
         x++;
+        p++;
 
         nomeEven = linha2[i][j];
         j++;
@@ -208,8 +209,27 @@ int main(){
     //   1.2 - Número de eventos vendidos por cada usuário
     cout << "Número de eventos que o usuário possui:" << endl;
 
+    //Criação de map para armazenar numero eventos por dono
+    map<int, int> dono;
+    map<int, int>::iterator it;
+
+    //Passagem para o Map
+    for(int i = 0; i < p; i++){
+        dono[IdDono[i]]++;
+    }
+    
+    cout<<endl<<"Numero de Eventos que o Usuario possui:"<<endl;
+     for(it = dono.begin(); it != dono.end(); it++){
+        for(ita = adulto.begin(); ita!=adulto.end();ita++){
+            if(it->first == ita->get_id()){
+                cout<<ita->get_nome()<<" (ID: "<<ita->get_id()<<"): "<<it->second<<endl;
+            }
+        }
+    }
+
+
     //   1.3 - Nome e ID do evento com a maior cota para idosos
-    cout << "Evento com maior cota para idoso:" << endl;
+    cout <<endl<< "Evento com maior cota para idoso:" << endl;
 
     //   1.4 - Número total de bilhetes de cada valor
     cout << "Número de ingressos por preço:" << endl;
@@ -218,6 +238,7 @@ int main(){
     delete [] ingEven ;
     delete [] ValorEven ;
     delete [] horarios ;
+    delete [] IdDono;
 
     return 0;
 }
