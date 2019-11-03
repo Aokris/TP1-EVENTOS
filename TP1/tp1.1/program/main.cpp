@@ -193,7 +193,7 @@ int main(){
 
         // Tratando os objetos
         if(categoriaEven == "infantil"){
-            for (int k = 0; k < linha2[i].size() - x; k++){
+            for (int k = 0; k < linha2[i].size() - (x+1); k++){
                 horarios[k] = atoi(linha2[i][j].c_str());
                 j++;
             }
@@ -201,8 +201,8 @@ int main(){
             TeatroFantoche fan (horarios, IdEven, nomeEven, IdDono[p], ingEven, ValorEven);
             fantoche.push_back(fan);
         } else if(categoriaEven == "cinema"){
-            for (int k = 0; k < linha2[i].size()-1; k++){
-                horarios[k] = atoi(linha2[i][j].c_str());
+            for (int k = 0; k < linha2[i].size()-(x+1); k++){
+                horarios[k] = stoi(linha2[i][j]);
                 j++;
             }
 
