@@ -21,22 +21,7 @@ using namespace std;
 
 int main(){
 
-<<<<<<< HEAD
-    int j = 0, k = 0, x = 0, n = 0, p = 0, tam = 0; //variaveis auxiliares
-    unsigned int i = 0 ;
-
-    int *depend = new int[1000];                //vetor de id dependentes
-    depend[0] = -1;                       // usado para caso extremo de nenhum dependente
-    int *idad = new int[1000];                  //vetor de idades
-    int qcria = 0, qadult = 0, qidos = 0; //quantidade de usuarios
-    int id = 0;
-    float saldo = 0.0;
-    string nome, categoria;
-
-    //-------Dados para criação de objetos(Usuários)-----------//
-=======
 /* ---------- Criação de Objetos - USUÁRIOS ---------- */
->>>>>>> a2f2a287ab0b2f092e9ea53ba064597de65ea866
     vector<vector<string>> linha;    //iniciar o vetor da linha
     vector<string>::iterator lin; //iterator para linha
 
@@ -49,25 +34,6 @@ int main(){
 
     vector<Idoso> idoso; //iniciar o vetor de idosos
     vector<Idoso>::iterator itd;
-<<<<<<< HEAD
-    vector<string>::iterator lin; //iterator para linha
-    fstream file, file1;          //Cria a variavel arquivo
-
-    //------------Variaveis Eventos ---------------//
-    int IdEven = 0;
-    int aux = 0;
-    string categoriaEven;
-    string tipoEven;
-    string nomeEven;
-    int *IdDono = new int;
-    int qtipoEven = 0;
-    int *ingEven = new int[1000];
-    double *ValorEven = new double[1000];
-    int *horarios = new int[1000];
-
-    //------Dados para criação de objetos(Eventos)-----------//
-=======
->>>>>>> a2f2a287ab0b2f092e9ea53ba064597de65ea866
 
 /* ---------- Váriaveis Auxiliares - USUÁRIOS ---------- */
     int j = 0, k = 0, x = 0, n = 0, tam = 0; //variaveis auxiliares
@@ -199,19 +165,10 @@ int main(){
             x++;
         }
 
-<<<<<<< HEAD
-        IdDono[p] == stoi(linha2[i][j]);
-        j++;
-        x++;
-        p++;
-
-        nomeEven = linha2[i][j];
-=======
         nomeEven = linha2[i][j];
         j++;
         x++;
         IdDono[p] == atoi(linha2[i][j].c_str());
->>>>>>> a2f2a287ab0b2f092e9ea53ba064597de65ea866
         j++;
         x++;
         p++;
@@ -369,43 +326,6 @@ int main(){
                 std::cout << itboate->get_nome() << " (ID: " << itboate->get_id() << "): " << "maiorQuota" << endl;
         }
     }
-<<<<<<< HEAD
-    
-    // 1 - EVENTOS
-    //   1.1 - Número de eventos de cada tipo
-    cout << "Número de eventos:" << endl;
-    cout << "Adultos:" << endl;
-    cout << "Livres:" << endl;
-    cout << "Infantis:" << endl << endl;
-
-    //   1.2 - Número de eventos vendidos por cada usuário
-    cout << "Número de eventos que o usuário possui:" << endl;
-
-    //Criação de map para armazenar numero eventos por dono
-    map<int, int> dono;
-    map<int, int>::iterator it;
-
-    //Passagem para o Map
-    for(int i = 0; i < p; i++){
-        dono[IdDono[i]]++;
-    }
-    
-    cout<<endl<<"Numero de Eventos que o Usuario possui:"<<endl;
-     for(it = dono.begin(); it != dono.end(); it++){
-        for(ita = adulto.begin(); ita!=adulto.end();ita++){
-            if(it->first == ita->get_id()){
-                cout<<ita->get_nome()<<" (ID: "<<ita->get_id()<<"): "<<it->second<<endl;
-            }
-        }
-    }
-
-
-    //   1.3 - Nome e ID do evento com a maior cota para idosos
-    cout <<endl<< "Evento com maior cota para idoso:" << endl;
-
-    //   1.4 - Número total de bilhetes de cada valor
-    cout << "Número de ingressos por preço:" << endl;
-=======
 
 
 //   1.4 - Número total de bilhetes de cada valor
@@ -415,7 +335,6 @@ int main(){
     }
 
 
->>>>>>> a2f2a287ab0b2f092e9ea53ba064597de65ea866
     delete [] depend ;
     delete [] idad ;
     delete [] ingEven ;
