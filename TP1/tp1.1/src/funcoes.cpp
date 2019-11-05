@@ -18,7 +18,7 @@ std::vector<std::string> splitLine(std::string line, char sep, int &cont){
 }
 
 
-// Function for read file csv
+//2. Função que abre arquivo csv e realiza sua leitura
 std::vector<int> readCsv( std::vector<std::vector<std::string>> &resutlCsv, std::string nameFile, char sep){
 
     std::string lineString;
@@ -26,34 +26,36 @@ std::vector<int> readCsv( std::vector<std::vector<std::string>> &resutlCsv, std:
     std::vector<int> contCol;
     int cont;
 
-    // Read file if correct name
-    if (myfile.is_open()){
+    // Verificando se o arquivo foi aberto corretamente
+    if(myfile.is_open()){
 
-        // Process file line by line
-        while (getline(myfile, lineString)){
+        // Processo de leitura linha por linha
+        while(getline(myfile, lineString)){
             cont = 0;
             resutlCsv.push_back(splitLine(lineString,sep,cont));
             contCol.push_back(cont);
         }
         myfile.close();
 
-    }else
-        std::cout << "Unable to open file";
+    } else {
+        std::cout << "Erro! Não foi possível abrir esse arquivo" << endl;
+        std::cout << "Finalizando programa..." << endl;
+    }
 
     return contCol;
 }
 
-//2 . Função que imprime a idade dos usuarios segundo o especificado
+//3. Função que imprime a idade dos usuarios segundo o especificado
 void IdadeDosUsuarios(int *idad, int max){
     int aux = 0, soma = 0;
-    float resul;
+    float resul = 0.0;
 
     for (int i = 0; i < max; i++) { 
         soma += idad[i];
     }
 
     for (int i = 0; i < max; i++) { 
-        for (int j = 0; j < max; j++){ 
+        for (int j = i; j < max; j++){ 
             if (idad[i] < idad[j]){ 
                 aux = idad[i];
                 idad[i] = idad[j];
@@ -64,14 +66,14 @@ void IdadeDosUsuarios(int *idad, int max){
    
    resul = (float)soma/max;
 
-//Impressao das idades minima, maxima e media
-   std::cout << "Idade dos usuários:" << endl;
-   std::cout << "Minima: "<< idad[0] << endl;
-   std::cout << "Máxima: "<< idad[max-1] << endl;
-   std::cout << "Média: "<< resul << endl << endl;
+    //Impressao das idades minima, maxima e media
+    std::cout << "Idade dos usuários:" << endl;
+    std::cout << "Minima: "<< idad[0] << endl;
+    std::cout << "Máxima: "<< idad[max-1] << endl;
+    std::cout << "Média: "<< resul << endl << endl;
 }
 
-//Numero de dependentes por adulto
+//4. Numero de dependentes por adulto
 void NumeroDependentes (int *depend, int qp, int np){
     //Criação de map para armazenar numero de dependentes por adulto
     map<int, int> numdep;

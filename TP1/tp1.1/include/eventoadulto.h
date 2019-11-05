@@ -5,10 +5,10 @@
 #include "evento.h"
 
 class EventoAdulto : public  Evento{
-    private:
-    int _quota_idoso;
     protected:
-        EventoAdulto(int id, string nome, int id_responsavel, int &capacidade, int &precos, int quota_idoso);
+    int _quota_idoso;
+    public:
+        EventoAdulto(int id, string nome, int id_dono, int *capacidade, int *precos, int quota_idoso);
 };
 
 #endif
