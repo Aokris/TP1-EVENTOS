@@ -12,10 +12,13 @@ Metodo para pegar oque será inserido, fazer igual o do ruhann mudar de acordo c
 	Lista de dependentes por adulto - ok
 		
 	
-	Numero de eventos de cada tipo
+	Numero de eventos de cada tipo - ok
 	
-	Numero de Eventos vendidos por cada usuario
+	Numero de Eventos vendidos por cada usuario - ok
 	
-	Nome e ID do evento com a maior cota pra idoso
+	Nome e ID do evento com a maior cota pra idoso - ok
 	
-	Numero total de bilhetes de cada valor
+	Numero total de bilhetes de cada valor - ok
+
+
+VALGRINDAR TUDO - ainda não
