@@ -1,24 +1,25 @@
 #include "funcoes.h"
 
+// 1. Função que divide as linhas
 std::vector<std::string> splitLine(std::string line, char sep, int &cont){
 
-    // Convert string in stream string
+    // Convertendo a string para stream string
     std::istringstream split(line);
 
-    // Create vector for line 
+    // Criando um vetor para a linha
     std::vector<std::string> lineVector;
 
-    // Split line for character separator
+    // Divide a linha para o separador de caracteres
     for (std::string each; std::getline(split, each,sep); lineVector.push_back(each));
 
-    // Cont number of columns
+    // Conta o número de colunas
     cont = lineVector.size();
 
     return lineVector;
 }
 
 
-//2. Função que abre arquivo csv e realiza sua leitura
+// 2. Função que abre arquivo csv e realiza sua leitura
 std::vector<int> readCsv( std::vector<std::vector<std::string>> &resutlCsv, std::string nameFile, char sep){
 
     std::string lineString;
@@ -45,7 +46,7 @@ std::vector<int> readCsv( std::vector<std::vector<std::string>> &resutlCsv, std:
     return contCol;
 }
 
-//3. Função que imprime a idade dos usuarios segundo o especificado
+// 3. Função que imprime a idade dos usuarios segundo o especificado
 void IdadeDosUsuarios(int *idad, int max){
     int aux = 0, soma = 0;
     float resul = 0.0;
@@ -73,7 +74,7 @@ void IdadeDosUsuarios(int *idad, int max){
     std::cout << "Média: "<< resul << endl << endl;
 }
 
-//4. Numero de dependentes por adulto
+// 4. Numero de dependentes por adulto
 void NumeroDependentes (int *depend, int qp, int np){
     //Criação de map para armazenar numero de dependentes por adulto
     map<int, int> numdep;
