@@ -1,7 +1,7 @@
-TP1
-Functions
+TP1 - ok
+Functions - ok
 
-Metodo para pegar oque será inserido, fazer igual o do ruhann mudar de acordo com o q foi pedido
+Metodo para pegar oque será inserido, fazer igual o do ruhann mudar de acordo com o q foi pedido - ok
 
 	Numero de criancas, adultos e idosos - ok
 	Idade minima, maximo e media para todos os usuarios - ok
@@ -21,4 +21,4 @@ Metodo para pegar oque será inserido, fazer igual o do ruhann mudar de acordo c
 	Numero total de bilhetes de cada valor - ok
 
 
-VALGRINDAR TUDO - ainda não
+VALGRINDAR TUDO - ok
