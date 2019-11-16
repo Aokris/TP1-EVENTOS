@@ -190,6 +190,11 @@ int main(){
             NumTipos = stoi(tratamento2[i]); i++;
 
             for(int aux_tipos = 0; aux_tipos < NumTipos; aux_tipos++){
+
+                fill_n(ingEven, 999, NULL);
+
+                fill_n(ValorEven, 999, NULL);
+
                 ingEven[aux_tipos] = stoi(tratamento2[i]); i++;
 
                 ValorEven[aux_tipos] = stof(tratamento2[i]); i++;
