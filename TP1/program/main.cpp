@@ -142,17 +142,18 @@ int le_eventos(int &contagem_donos, int &qBoate, int &qShow, int &qCine, int &qF
 
             int *horarios = new int[999];
             // Se o evento não for do tipo Adulto, a leitura dos horários é realizada
+            int aux_size = tratamento2.size() - i;
             if(categoriaEven == "infantil"){
-                for(int aux_h = 0; aux_h < tratamento2.size() - i; aux_h++){
+                for(int aux_h = 0; aux_h < aux_size; aux_h++){
                     horarios[aux_h] = stoi(tratamento2[i]); i++;
                 }
-
+                
                 TeatroFantoche fan(horarios, IdEven, nomeEven, IdDono[contagem_donos], ingEven, ValorEven);
                 fantoche.push_back(fan);
                 qFanto++;
 
             } else if(categoriaEven == "cinema"){
-                for(int aux_h = 0; aux_h < tratamento2.size() - (i+1); aux_h++){
+                for(int aux_h = 0; aux_h < aux_size - 1; aux_h++){
                     horarios[aux_h] = stoi(tratamento2[i]); i++;
                 }
                 
